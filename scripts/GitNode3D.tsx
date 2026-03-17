@@ -1,6 +1,7 @@
 
 export class GitNode3D{
 
+    name:string
     parent:GitNode3D | null;
     children:GitNode3D[];
 
@@ -11,7 +12,8 @@ export class GitNode3D{
     }
     size:number;
 
-    constructor(parent:GitNode3D | null,center,size:number){
+    constructor(name:string, parent:GitNode3D | null,center,size:number){
+        this.name=name;
         this.parent=parent;
         this.children=[]
         this.center=center;

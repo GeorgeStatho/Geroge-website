@@ -41,7 +41,7 @@ export function getRepos(user:string){
                 commitContributionsByRepository(maxRepositories: 100) {
                     repository {
                     name
-                    
+                    createdAt
                     }
                 }
                 }

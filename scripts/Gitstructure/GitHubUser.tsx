@@ -17,7 +17,8 @@ export class GitUser{
 
         for (const repoData of repoNodes) {
             const repoName = repoData.repository.name;
-            const repo = new Repo(repoName);
+            const repoCreatedAt = repoData.repository.createdAt;
+            const repo = new Repo(repoName,repoCreatedAt);
             await repo.createRepoData(repoName);
             this.Repos.push(repo);
         }

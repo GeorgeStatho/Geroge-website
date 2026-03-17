@@ -2,10 +2,12 @@ import Commit from "./Commits";
 import { getRepoData } from "./gitAPI";
 export class Repo{
     name:string;
+    date:string;
     branches:Record<string,Commit[]>;
 
-    constructor(name:string){
+    constructor(name:string,date:string){
         this.name=name;
+        this.date=date
         this.branches={};        
     }
 
