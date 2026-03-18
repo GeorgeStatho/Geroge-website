@@ -42,6 +42,15 @@ export function getRepos(user:string){
                     repository {
                     name
                     createdAt
+                    defaultBranchRef {
+                        target {
+                        ... on Commit {
+                            history {
+                            totalCount
+                            }
+                        }
+                        }
+                    }
                     refs(refPrefix: "refs/heads/", first: 30) {
                         nodes {
                         name

@@ -2,11 +2,13 @@ import Commit from "./Commits";
 export class Repo{
     name:string;
     date:string;
+    commitCount:number;
     branches:Record<string,Commit[]>;
 
-    constructor(name:string,date:string){
+    constructor(name:string,date:string,commitCount:number=0){
         this.name=name;
-        this.date=date
+        this.date=date;
+        this.commitCount=commitCount;
         this.branches={};        
     }
 

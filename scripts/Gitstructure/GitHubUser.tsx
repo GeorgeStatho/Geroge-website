@@ -18,7 +18,9 @@ export class GitUser{
         for (const repoData of repoNodes) {
             const repoName = repoData.repository.name;
             const repoCreatedAt = repoData.repository.createdAt;
-            const repo = new Repo(repoName,repoCreatedAt);
+            const repoCommitCount =
+                repoData.repository.defaultBranchRef?.target?.history?.totalCount ?? 0;
+            const repo = new Repo(repoName,repoCreatedAt,repoCommitCount);
             repo.createRepoData(repoData.repository.refs?.nodes ?? []);
             this.Repos.push(repo);
         }

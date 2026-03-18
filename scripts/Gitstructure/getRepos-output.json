@@ -1,0 +1,892 @@
+{
+  "data": {
+    "user": {
+      "contributionsCollection": {
+        "commitContributionsByRepository": [
+          {
+            "repository": {
+              "name": "Derek-website",
+              "createdAt": "2026-02-21T07:51:51Z",
+              "defaultBranchRef": {
+                "target": {
+                  "history": {
+                    "totalCount": 40
+                  }
+                }
+              },
+              "refs": {
+                "nodes": [
+                  {
+                    "name": "main(no-more)",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "db470602d270de9d070e856d8c544d185e7eb02b",
+                            "messageHeadline": "Ai wirrte ncode to make circles with rect( I think I should do it mys…",
+                            "committedDate": "2026-02-21T08:25:20Z",
+                            "additions": 69,
+                            "deletions": 64
+                          },
+                          {
+                            "oid": "5b2a07b7674569c0850e590e3cbb425f9d6b2282",
+                            "messageHeadline": "Ai code",
+                            "committedDate": "2026-02-21T07:52:49Z",
+                            "additions": 73,
+                            "deletions": 43
+                          },
+                          {
+                            "oid": "5fadca26be37115e43e085758500d37c1413272f",
+                            "messageHeadline": "first commit",
+                            "committedDate": "2026-02-21T07:51:52Z",
+                            "additions": 244,
+                            "deletions": 0
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "main",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "f6eb937c89d47691579105f57d714560e961da15",
+                            "messageHeadline": "updated vconfig",
+                            "committedDate": "2026-03-15T19:43:25Z",
+                            "additions": 1,
+                            "deletions": 1
+                          },
+                          {
+                            "oid": "32c660e05d21b0120c0a6c4ab61300dc8e2e0790",
+                            "messageHeadline": "addec vonfig for vercel deployment",
+                            "committedDate": "2026-03-15T19:38:22Z",
+                            "additions": 5,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "c0a7bf2408b83f19621c04e88b1056c0e600fd9e",
+                            "messageHeadline": "added documentation to circle scripts",
+                            "committedDate": "2026-02-24T08:53:16Z",
+                            "additions": 10,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "bf849d705027f6eba5499f6448534cb2d23c7398",
+                            "messageHeadline": "organized main.tsx for better readability, fixed plane drag issues",
+                            "committedDate": "2026-02-24T08:49:59Z",
+                            "additions": 709,
+                            "deletions": 550
+                          },
+                          {
+                            "oid": "41080b57cbdf75896431780afe48752ee48a8eb6",
+                            "messageHeadline": "airplane works and window changes size dynamically correctly",
+                            "committedDate": "2026-02-24T07:10:39Z",
+                            "additions": 357,
+                            "deletions": 98
+                          },
+                          {
+                            "oid": "60c06f67cc64871730d8821df96d0222d4dc888f",
+                            "messageHeadline": "page should update correctly",
+                            "committedDate": "2026-02-24T03:46:42Z",
+                            "additions": 179,
+                            "deletions": 39
+                          },
+                          {
+                            "oid": "02b0ab109fb9a2ba988ee7ab07b8c158cc18ea32",
+                            "messageHeadline": "updated css to be consistent across screen sizes",
+                            "committedDate": "2026-02-24T03:00:56Z",
+                            "additions": 103,
+                            "deletions": 16
+                          },
+                          {
+                            "oid": "f3146854649593df2f1437be8ec67774fd5935cd",
+                            "messageHeadline": "added plane and organized files",
+                            "committedDate": "2026-02-24T01:09:42Z",
+                            "additions": 205,
+                            "deletions": 3
+                          },
+                          {
+                            "oid": "327677eae822a7e601c651d0d2877fc33f459cba",
+                            "messageHeadline": "organized css files",
+                            "committedDate": "2026-02-24T00:31:41Z",
+                            "additions": 271,
+                            "deletions": 282
+                          },
+                          {
+                            "oid": "c7a2c14462460b0ec4e30559bfea0edad4d1d853",
+                            "messageHeadline": "circles rotate itermitenly now",
+                            "committedDate": "2026-02-23T23:29:08Z",
+                            "additions": 65,
+                            "deletions": 3
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "making_html_elements_programatically",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "1f4f2f34e751d6ea734f7896b81952b2ef850169",
+                            "messageHeadline": "Derek Page with social media links setup",
+                            "committedDate": "2026-02-22T23:47:24Z",
+                            "additions": 255,
+                            "deletions": 51
+                          },
+                          {
+                            "oid": "e7be399c05977a5dbe5ee800fd6ef88028892207",
+                            "messageHeadline": "added wrappers to its own file for organizational purposes",
+                            "committedDate": "2026-02-22T04:13:46Z",
+                            "additions": 36,
+                            "deletions": 1
+                          },
+                          {
+                            "oid": "06296a8a99a66d86fe68b8ea02a7e0c55be1e52a",
+                            "messageHeadline": "added circles to eitehr side of webpage, and created html wrapper fun…",
+                            "committedDate": "2026-02-22T03:22:35Z",
+                            "additions": 197,
+                            "deletions": 71
+                          },
+                          {
+                            "oid": "5fadca26be37115e43e085758500d37c1413272f",
+                            "messageHeadline": "first commit",
+                            "committedDate": "2026-02-21T07:51:52Z",
+                            "additions": 244,
+                            "deletions": 0
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "repository": {
+              "name": "Cloud9Hackathon",
+              "createdAt": "2026-01-22T07:14:48Z",
+              "defaultBranchRef": {
+                "target": {
+                  "history": {
+                    "totalCount": 40
+                  }
+                }
+              },
+              "refs": {
+                "nodes": [
+                  {
+                    "name": "Finsihed-App",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "649cea082784cd3783cf648d67121b4e90ebf70d",
+                            "messageHeadline": "Fix video links in README.md",
+                            "committedDate": "2026-02-09T20:40:32Z",
+                            "additions": 2,
+                            "deletions": 2
+                          },
+                          {
+                            "oid": "2c6cc24b52ec4984a0114396d759846e30e1d2ee",
+                            "messageHeadline": "Fix video link formatting in README",
+                            "committedDate": "2026-02-09T20:39:28Z",
+                            "additions": 1,
+                            "deletions": 1
+                          },
+                          {
+                            "oid": "ac8f8beb33a5a14a52596e73c701cf7da8fbbc63",
+                            "messageHeadline": "Add video link and image to README",
+                            "committedDate": "2026-02-09T20:38:52Z",
+                            "additions": 7,
+                            "deletions": 1
+                          },
+                          {
+                            "oid": "a0ca100f6c4549406997604c20d81295e058787e",
+                            "messageHeadline": "Add MIT License to the project(ONLY LICENSE ADDED)",
+                            "committedDate": "2026-02-03T20:38:57Z",
+                            "additions": 21,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "40378699ccb6c0a4d899a26e3797dddcee75fd28",
+                            "messageHeadline": "Update README with .exe file usage instructions",
+                            "committedDate": "2026-02-03T12:22:32Z",
+                            "additions": 4,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "8d0c773b83f371dc976735ea88827a7cc6626473",
+                            "messageHeadline": "Merge pull request #8 from GeorgeStatho/Parralization-for-exe",
+                            "committedDate": "2026-02-03T11:17:01Z",
+                            "additions": 522,
+                            "deletions": 131
+                          },
+                          {
+                            "oid": "ee52654bef980554e6b02d8cd2d6680767fa20d1",
+                            "messageHeadline": "I might be the smartest man on the planet.(figured out how to get the…",
+                            "committedDate": "2026-02-03T11:15:59Z",
+                            "additions": 52,
+                            "deletions": 3
+                          },
+                          {
+                            "oid": "5efa9f3c2e8f7bc680475ef67f4ca767ce31ae4c",
+                            "messageHeadline": "Commiting this because im prob gonna break something to add back para…",
+                            "committedDate": "2026-02-03T10:19:14Z",
+                            "additions": 237,
+                            "deletions": 91
+                          },
+                          {
+                            "oid": "c0fdb2d256a685da09cd62c0136184e65e974b21",
+                            "messageHeadline": "Fixed bugs that occured when generating team with files already made",
+                            "committedDate": "2026-02-03T08:08:07Z",
+                            "additions": 238,
+                            "deletions": 42
+                          },
+                          {
+                            "oid": "89d6389f20540b77cd93522ae0b0367c04b2ca9a",
+                            "messageHeadline": "Revise quick start instructions in README",
+                            "committedDate": "2026-02-03T03:22:15Z",
+                            "additions": 4,
+                            "deletions": 2
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "codex/add-team-stats-tab-with-player-overlays",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "8b57b2c4ae2aa57c98179310a34caa485f0f2263",
+                            "messageHeadline": "Add team overview tab with map stats",
+                            "committedDate": "2026-02-02T23:47:42Z",
+                            "additions": 404,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "13c04f3ab5854cfcc9413814a11806e99f9d9a62",
+                            "messageHeadline": "Fixing up webapp for fkinally version before submission",
+                            "committedDate": "2026-02-02T23:39:19Z",
+                            "additions": 389,
+                            "deletions": 9
+                          },
+                          {
+                            "oid": "a523c4adc2ea23a604fa796b2b463db7be3eca38",
+                            "messageHeadline": "Added new stats the report. Made things a bit faster",
+                            "committedDate": "2026-02-02T21:56:54Z",
+                            "additions": 431,
+                            "deletions": 58
+                          },
+                          {
+                            "oid": "d96efe8e632dbdff8940791b46e3f6e0b1b4ef5a",
+                            "messageHeadline": "Everything works. Paraelle processing. Will try to make building the …",
+                            "committedDate": "2026-02-02T20:49:42Z",
+                            "additions": 50,
+                            "deletions": 15
+                          },
+                          {
+                            "oid": "62a274d96e90128f022e608e279735bd4061e43b",
+                            "messageHeadline": "Nearsite generation works and is much faster, but illtry to make it f…",
+                            "committedDate": "2026-02-02T20:31:16Z",
+                            "additions": 227,
+                            "deletions": 42
+                          },
+                          {
+                            "oid": "901eb5ba6bff655a6a434eadf80d3b22ae660449",
+                            "messageHeadline": "Actually use the end state json files instead of just the jsonl event…",
+                            "committedDate": "2026-02-02T19:48:25Z",
+                            "additions": 756,
+                            "deletions": 85
+                          },
+                          {
+                            "oid": "921570f04b35826315b9de86430f2ab8c541c03b",
+                            "messageHeadline": "Updated Website and fixed bugs with new KEYS.py to handle api_key",
+                            "committedDate": "2026-02-02T01:27:15Z",
+                            "additions": 219,
+                            "deletions": 41
+                          },
+                          {
+                            "oid": "a7bbb60d7828f7c3d50b5585e5d45bf93fb63363",
+                            "messageHeadline": "Web app mostly works. Issue with Pathgenerator missing some attacker …",
+                            "committedDate": "2026-02-01T19:41:00Z",
+                            "additions": 159,
+                            "deletions": 20
+                          },
+                          {
+                            "oid": "493e1392407b4913cfc0abe2e6f549223815b8ec",
+                            "messageHeadline": "Reorganized Data and fiels for easier maintaibanlity. Generating file…",
+                            "committedDate": "2026-02-01T06:31:09Z",
+                            "additions": 1969,
+                            "deletions": 648
+                          },
+                          {
+                            "oid": "f52a55f954a9b92a72b8c698aee2af9974924318",
+                            "messageHeadline": "web app prototype",
+                            "committedDate": "2026-01-31T23:09:23Z",
+                            "additions": 147,
+                            "deletions": 39
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "main",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "405b577740106fa2cc7a6db12e57acb0b1b48673",
+                            "messageHeadline": "Merge pull request #7 from GeorgeStatho/Human-Written-fully-code",
+                            "committedDate": "2026-02-03T01:24:35Z",
+                            "additions": 1136,
+                            "deletions": 1491
+                          },
+                          {
+                            "oid": "aeb4404ffc24fbd1cec134446c5a2cfbb0d1b170",
+                            "messageHeadline": "Cleaned up the repo for hackathon",
+                            "committedDate": "2026-02-03T01:22:37Z",
+                            "additions": 37,
+                            "deletions": 1390
+                          },
+                          {
+                            "oid": "bd89da2c82190ca0d9af06fc7e64cb459f3f25c7",
+                            "messageHeadline": "Im done",
+                            "committedDate": "2026-02-03T01:13:48Z",
+                            "additions": 60,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "423670df99aa3cdb7a9cb13c903da35596432872",
+                            "messageHeadline": "I think.... Im finished",
+                            "committedDate": "2026-02-03T00:54:11Z",
+                            "additions": 417,
+                            "deletions": 19
+                          },
+                          {
+                            "oid": "09c127585b79af2779403682a44486606325d2dc",
+                            "messageHeadline": "Updated the web page to use PathDisplay so that Paths are more accurate",
+                            "committedDate": "2026-02-03T00:17:02Z",
+                            "additions": 228,
+                            "deletions": 92
+                          },
+                          {
+                            "oid": "4859124e834f3656188cf6b041255b87b35e42b2",
+                            "messageHeadline": "Merge pull request #6 from GeorgeStatho/codex/add-team-stats-tab-with…",
+                            "committedDate": "2026-02-02T23:48:49Z",
+                            "additions": 404,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "8b57b2c4ae2aa57c98179310a34caa485f0f2263",
+                            "messageHeadline": "Add team overview tab with map stats",
+                            "committedDate": "2026-02-02T23:47:42Z",
+                            "additions": 404,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "55e1b62220813ec9425a615b55c51af506efe38a",
+                            "messageHeadline": "Merge pull request #5 from GeorgeStatho/Human-Written-fully-code",
+                            "committedDate": "2026-02-02T23:40:22Z",
+                            "additions": 4112,
+                            "deletions": 711
+                          },
+                          {
+                            "oid": "13c04f3ab5854cfcc9413814a11806e99f9d9a62",
+                            "messageHeadline": "Fixing up webapp for fkinally version before submission",
+                            "committedDate": "2026-02-02T23:39:19Z",
+                            "additions": 389,
+                            "deletions": 9
+                          },
+                          {
+                            "oid": "a523c4adc2ea23a604fa796b2b463db7be3eca38",
+                            "messageHeadline": "Added new stats the report. Made things a bit faster",
+                            "committedDate": "2026-02-02T21:56:54Z",
+                            "additions": 431,
+                            "deletions": 58
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "map_lore",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "82208b5a74855e6b42c9810810bdd9ea8c9b68e5",
+                            "messageHeadline": "updated html page",
+                            "committedDate": "2026-01-31T04:15:34Z",
+                            "additions": 11,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "71078a8c9efc8d925bf12e07e97b1fb09b673d12",
+                            "messageHeadline": "Making wbeapp for hackathon",
+                            "committedDate": "2026-01-31T04:12:03Z",
+                            "additions": 814,
+                            "deletions": 18
+                          },
+                          {
+                            "oid": "638222de8ebfbb34d983847448f2b74e28e1688a",
+                            "messageHeadline": "can get all the paths for all maps a player has played on in their team",
+                            "committedDate": "2026-01-31T02:29:10Z",
+                            "additions": 1364,
+                            "deletions": 79
+                          },
+                          {
+                            "oid": "33c8be8cc8d98c0978633214599972bf3ea65dc9",
+                            "messageHeadline": "Organized Data and I think finished with working with graphql queries…",
+                            "committedDate": "2026-01-30T20:45:12Z",
+                            "additions": 78,
+                            "deletions": 25
+                          },
+                          {
+                            "oid": "9921b81051d963c17a6d4c33339ae267f1699c0e",
+                            "messageHeadline": "Moved Graphql scripts to own folder for better organization",
+                            "committedDate": "2026-01-30T09:05:31Z",
+                            "additions": 914,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "51850ebe5388c0d1609a1b9ebfaaa4a9a3481d75",
+                            "messageHeadline": "Added Map data for all valorant maps. Added a Path generator that tak…",
+                            "committedDate": "2026-01-30T08:59:39Z",
+                            "additions": 5412,
+                            "deletions": 19
+                          },
+                          {
+                            "oid": "e5967795bcae06db770403d6b6aedf4026dc6a1c",
+                            "messageHeadline": "Get map function and working on seeing plater tendencies on maps",
+                            "committedDate": "2026-01-29T19:39:20Z",
+                            "additions": 540,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "e4ebb610d5ed474a665e773908f1f69c74224e73",
+                            "messageHeadline": "idk bro, just installed pycharm",
+                            "committedDate": "2026-01-29T15:10:45Z",
+                            "additions": 67,
+                            "deletions": 1076
+                          },
+                          {
+                            "oid": "66a14872f567a8e13ef1510f60d9dcb9a087f264",
+                            "messageHeadline": "Merge branch 'main' of https://github.com/GeorgeStatho/Cloud9Hackathon",
+                            "committedDate": "2026-01-22T07:31:37Z",
+                            "additions": 3,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "bd0914e5c944cdb97ba8547e1cb5e6659614e1bd",
+                            "messageHeadline": "Yes Ik it is just a  data file, its to make index.html work properly",
+                            "committedDate": "2026-01-22T07:30:56Z",
+                            "additions": 905,
+                            "deletions": 0
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "repository": {
+              "name": "Dimitri-website",
+              "createdAt": "2026-02-23T21:54:30Z",
+              "defaultBranchRef": {
+                "target": {
+                  "history": {
+                    "totalCount": 11
+                  }
+                }
+              },
+              "refs": {
+                "nodes": [
+                  {
+                    "name": "main",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "d64da8f06ce3dde1f32867d623bb3828b7658c78",
+                            "messageHeadline": "changed style of page",
+                            "committedDate": "2026-02-23T22:49:05Z",
+                            "additions": 8,
+                            "deletions": 8
+                          },
+                          {
+                            "oid": "d387533af46184a8b3d0260e68d30977286d2d76",
+                            "messageHeadline": "Fix imports for GH Pages",
+                            "committedDate": "2026-02-23T22:36:35Z",
+                            "additions": 3,
+                            "deletions": 5
+                          },
+                          {
+                            "oid": "3fefff33aff065549293052304e8e2331ec31af1",
+                            "messageHeadline": "updated react import map",
+                            "committedDate": "2026-02-23T22:32:26Z",
+                            "additions": 9,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "d6eb51ced0446ac71d873dd484e117d2fa37b61f",
+                            "messageHeadline": "fixed website not loading html elements",
+                            "committedDate": "2026-02-23T22:30:10Z",
+                            "additions": 2,
+                            "deletions": 2
+                          },
+                          {
+                            "oid": "6ec01c707010ea56e340feed8de7160c603a1462",
+                            "messageHeadline": "Merge branch 'main' of https://github.com/GeorgeStatho/Dimitri-website",
+                            "committedDate": "2026-02-23T22:23:13Z",
+                            "additions": 2,
+                            "deletions": 1
+                          },
+                          {
+                            "oid": "2b9895b25d0b1b9e9cde64d9657fd8a9a86be1b1",
+                            "messageHeadline": "removed vite",
+                            "committedDate": "2026-02-23T22:22:57Z",
+                            "additions": 1,
+                            "deletions": 8
+                          },
+                          {
+                            "oid": "1b40103d1a31ee895acda5e5b70281bba1df6696",
+                            "messageHeadline": "Update README.md",
+                            "committedDate": "2026-02-23T22:18:38Z",
+                            "additions": 1,
+                            "deletions": 1
+                          },
+                          {
+                            "oid": "178eed457658ad5751b37d4f15b48e996e9aa3bf",
+                            "messageHeadline": "Create CNAME",
+                            "committedDate": "2026-02-23T22:12:22Z",
+                            "additions": 1,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "ea1e6638be01bfa367b5080e83c312025c515ed5",
+                            "messageHeadline": "updated js",
+                            "committedDate": "2026-02-23T22:11:48Z",
+                            "additions": 9,
+                            "deletions": 7
+                          },
+                          {
+                            "oid": "f1edb7b9876508b7a8f12508c6b33261c05366c3",
+                            "messageHeadline": "Made site for chronis using components from last project",
+                            "committedDate": "2026-02-23T22:10:37Z",
+                            "additions": 21869,
+                            "deletions": 51
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "repository": {
+              "name": "Stock-trading-experiment",
+              "createdAt": "2025-10-29T06:22:57Z",
+              "defaultBranchRef": {
+                "target": {
+                  "history": {
+                    "totalCount": 6
+                  }
+                }
+              },
+              "refs": {
+                "nodes": [
+                  {
+                    "name": "Ai-assisted-Code(NewsCollecting.py,algMl.py)",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "a2b97e291bffe7f61359d1396013fbb5dcdf19f7",
+                            "messageHeadline": "Old file",
+                            "committedDate": "2026-01-10T19:32:58Z",
+                            "additions": 0,
+                            "deletions": 307
+                          },
+                          {
+                            "oid": "bc09f9d3fd0389f13b2462e6a9efd72bbd2d67e0",
+                            "messageHeadline": "Bot runs! Gonna study more on machine learning to write my  own ML co…",
+                            "committedDate": "2026-01-10T19:31:14Z",
+                            "additions": 1111,
+                            "deletions": 84
+                          },
+                          {
+                            "oid": "0c80f096cc94af0c4527a0445fd8f86dafe77d0c",
+                            "messageHeadline": "Save before allowing Ai to change code before connecting up main.py",
+                            "committedDate": "2025-12-19T05:45:41Z",
+                            "additions": 375,
+                            "deletions": 241
+                          },
+                          {
+                            "oid": "523a1b7a12a290e59400b6156e1b4102592280d7",
+                            "messageHeadline": "Test before rewrite NewsCollecting.py and mostly finished MarketData.py",
+                            "committedDate": "2025-12-16T22:56:54Z",
+                            "additions": 46,
+                            "deletions": 28
+                          },
+                          {
+                            "oid": "1d31c6e41029a1be64bd3de5cdf59d8c9d086e27",
+                            "messageHeadline": "Worked more on newsCollecting.py, got example code for algMl.py to he…",
+                            "committedDate": "2025-11-15T11:06:36Z",
+                            "additions": 268,
+                            "deletions": 8
+                          },
+                          {
+                            "oid": "dad5bed05d91f92ba6b6715180ecba86dc5eac38",
+                            "messageHeadline": "Added classes for trading .py, finished MarketData",
+                            "committedDate": "2025-11-01T23:27:00Z",
+                            "additions": 166,
+                            "deletions": 86
+                          },
+                          {
+                            "oid": "4c144c44f3ecd598e650609bb9503cc30cf15e04",
+                            "messageHeadline": "Delete stockTradingref.py",
+                            "committedDate": "2025-10-29T06:24:55Z",
+                            "additions": 0,
+                            "deletions": 283
+                          },
+                          {
+                            "oid": "793fb716097c84f21ec74a8c4e30f80e873ea5a9",
+                            "messageHeadline": "Create stockTradingref.py",
+                            "committedDate": "2025-10-29T06:20:51Z",
+                            "additions": 283,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "03560c288334699bee7f7a73d4450a295a0c3d1d",
+                            "messageHeadline": "Intiliaze repo and mostly finished up Trading.py",
+                            "committedDate": "2025-10-29T06:16:22Z",
+                            "additions": 121,
+                            "deletions": 0
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "main",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "360215f2ef518726bbbde536dddf634887d2d357",
+                            "messageHeadline": "Add instructions for running marketData.py and main.py",
+                            "committedDate": "2026-02-09T20:19:58Z",
+                            "additions": 1,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "1d31c6e41029a1be64bd3de5cdf59d8c9d086e27",
+                            "messageHeadline": "Worked more on newsCollecting.py, got example code for algMl.py to he…",
+                            "committedDate": "2025-11-15T11:06:36Z",
+                            "additions": 268,
+                            "deletions": 8
+                          },
+                          {
+                            "oid": "dad5bed05d91f92ba6b6715180ecba86dc5eac38",
+                            "messageHeadline": "Added classes for trading .py, finished MarketData",
+                            "committedDate": "2025-11-01T23:27:00Z",
+                            "additions": 166,
+                            "deletions": 86
+                          },
+                          {
+                            "oid": "4c144c44f3ecd598e650609bb9503cc30cf15e04",
+                            "messageHeadline": "Delete stockTradingref.py",
+                            "committedDate": "2025-10-29T06:24:55Z",
+                            "additions": 0,
+                            "deletions": 283
+                          },
+                          {
+                            "oid": "793fb716097c84f21ec74a8c4e30f80e873ea5a9",
+                            "messageHeadline": "Create stockTradingref.py",
+                            "committedDate": "2025-10-29T06:20:51Z",
+                            "additions": 283,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "03560c288334699bee7f7a73d4450a295a0c3d1d",
+                            "messageHeadline": "Intiliaze repo and mostly finished up Trading.py",
+                            "committedDate": "2025-10-29T06:16:22Z",
+                            "additions": 121,
+                            "deletions": 0
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "repository": {
+              "name": "Geroge-website",
+              "createdAt": "2026-03-17T15:08:44Z",
+              "defaultBranchRef": {
+                "target": {
+                  "history": {
+                    "totalCount": 2
+                  }
+                }
+              },
+              "refs": {
+                "nodes": [
+                  {
+                    "name": "Planetary-Visuilized-Git-Data",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "fac399056e301e62730a81cd1e99f1a9259e1cec",
+                            "messageHeadline": "Made Api calls mroe efficent(reduced to just 1). added solarsystem fi…",
+                            "committedDate": "2026-03-18T04:41:14Z",
+                            "additions": 47,
+                            "deletions": 55
+                          },
+                          {
+                            "oid": "6ad5a15f4a3925c95ca637b9a225e7d7b5421b3e",
+                            "messageHeadline": "creating nodes in tree",
+                            "committedDate": "2026-03-17T15:08:38Z",
+                            "additions": 62,
+                            "deletions": 9
+                          },
+                          {
+                            "oid": "5c4467c3ce1a574f4901b765caf1c174a3322116",
+                            "messageHeadline": "initliazing repo for my own website. Created structure to use github …",
+                            "committedDate": "2026-03-17T00:03:10Z",
+                            "additions": 1743,
+                            "deletions": 0
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "main",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "6ad5a15f4a3925c95ca637b9a225e7d7b5421b3e",
+                            "messageHeadline": "creating nodes in tree",
+                            "committedDate": "2026-03-17T15:08:38Z",
+                            "additions": 62,
+                            "deletions": 9
+                          },
+                          {
+                            "oid": "5c4467c3ce1a574f4901b765caf1c174a3322116",
+                            "messageHeadline": "initliazing repo for my own website. Created structure to use github …",
+                            "committedDate": "2026-03-17T00:03:10Z",
+                            "additions": 1743,
+                            "deletions": 0
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "repository": {
+              "name": "DiscordRageBaitDetector",
+              "createdAt": "2026-02-08T22:18:20Z",
+              "defaultBranchRef": {
+                "target": {
+                  "history": {
+                    "totalCount": 2
+                  }
+                }
+              },
+              "refs": {
+                "nodes": [
+                  {
+                    "name": "main",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "c3f9cb5fbfc4ca57fb7252df66ed7f272c63d7ff",
+                            "messageHeadline": "still getting started on rceiving voice samples",
+                            "committedDate": "2026-02-08T23:19:30Z",
+                            "additions": 3,
+                            "deletions": 0
+                          },
+                          {
+                            "oid": "af6f195c1544aaeedeac1f4e909546636e9d9050",
+                            "messageHeadline": "starting out. Join and leave logic",
+                            "committedDate": "2026-02-08T22:18:02Z",
+                            "additions": 48,
+                            "deletions": 0
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "repository": {
+              "name": "Wargame",
+              "createdAt": "2025-09-11T04:37:22Z",
+              "defaultBranchRef": {
+                "target": {
+                  "history": {
+                    "totalCount": 2
+                  }
+                }
+              },
+              "refs": {
+                "nodes": [
+                  {
+                    "name": "main",
+                    "target": {
+                      "history": {
+                        "nodes": [
+                          {
+                            "oid": "802f7f2139a504cb289d733cedf9c0adca510993",
+                            "messageHeadline": "Initial commit",
+                            "committedDate": "2025-09-11T04:36:03Z",
+                            "additions": 54,
+                            "deletions": 1
+                          },
+                          {
+                            "oid": "2dc44eabac322aa2ef693194e0299db94b24eeef",
+                            "messageHeadline": "Starting out",
+                            "committedDate": "2025-09-11T04:28:03Z",
+                            "additions": 1,
+                            "deletions": 0
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
