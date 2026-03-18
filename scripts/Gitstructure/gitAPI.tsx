@@ -42,51 +42,21 @@ export function getRepos(user:string){
                     repository {
                     name
                     createdAt
-                    }
-                }
-                }
-            }
-            }
-        `,
-    }),
-    })
-    .then((res) => res.json())
-}
-
-
-
-
-export function getRepoData(repoName:string){
-    return fetch(api_url, {
-    method: "POST",
-    headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-        query: `
-        query RepoBranches {
-            repository(owner: "georgestatho", name: "${repoName}") {
-                refs(refPrefix: "refs/heads/", first: 30) {
-                pageInfo {
-                    hasNextPage
-                    endCursor
-                }
-                nodes {
-                    name
-                    target {
-                    ... on Commit {
-                        history(first: 10) {
-                        pageInfo {
-                            hasNextPage
-                            endCursor
-                        }
+                    refs(refPrefix: "refs/heads/", first: 30) {
                         nodes {
-                            oid
-                            messageHeadline
-                            committedDate
-                            additions
-                            deletions
+                        name
+                        target {
+                            ... on Commit {
+                            history(first: 10) {
+                                nodes {
+                                oid
+                                messageHeadline
+                                committedDate
+                                additions
+                                deletions
+                                }
+                            }
+                            }
                         }
                         }
                     }
@@ -100,4 +70,3 @@ export function getRepoData(repoName:string){
     })
     .then((res) => res.json())
 }
-

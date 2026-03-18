@@ -1,11 +1,11 @@
 import { createRoot } from 'react-dom/client';
-import { GitUser } from './Gitstructure/GitHubUser';
-import { Repo } from './Gitstructure/Repos';
+import { GitUser } from '../Gitstructure/GitHubUser';
+import { Repo } from '../Gitstructure/Repos';
 import { createElement } from 'react';
 import {GitNode3D} from './GitNode3D'
 
 
-class GitTree3D{
+export class GitTree3D{
     user:GitUser;
     rootNode:GitNode3D;
     nodes:GitNode3D[];

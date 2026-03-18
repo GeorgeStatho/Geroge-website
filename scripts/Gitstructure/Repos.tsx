@@ -1,5 +1,4 @@
 import Commit from "./Commits";
-import { getRepoData } from "./gitAPI";
 export class Repo{
     name:string;
     date:string;
@@ -11,14 +10,15 @@ export class Repo{
         this.branches={};        
     }
 
-    async createRepoData(name: string) {
-        const result = await getRepoData(name);
-        const branchNodes = result.data.repository.refs.nodes;
+    createRepoData(branchNodes: any[] = []) {
+        this.branches = {};
 
         for (const branch of branchNodes) {
             this.branches[branch.name] = [];
 
-            for (const commit of branch.target.history.nodes) {
+            const commits = branch.target?.history?.nodes ?? [];
+
+            for (const commit of commits) {
                 this.branches[branch.name].push(
                     new Commit(
                         commit.messageHeadline,

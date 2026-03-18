@@ -19,7 +19,7 @@ export class GitUser{
             const repoName = repoData.repository.name;
             const repoCreatedAt = repoData.repository.createdAt;
             const repo = new Repo(repoName,repoCreatedAt);
-            await repo.createRepoData(repoName);
+            repo.createRepoData(repoData.repository.refs?.nodes ?? []);
             this.Repos.push(repo);
         }
     }
