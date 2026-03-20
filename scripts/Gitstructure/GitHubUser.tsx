@@ -20,7 +20,11 @@ export class GitUser{
             const repoCreatedAt = repoData.repository.createdAt;
             const repoCommitCount =
                 repoData.repository.defaultBranchRef?.target?.history?.totalCount ?? 0;
-            const repo = new Repo(repoName,repoCreatedAt,repoCommitCount);
+            const repoLanguages =
+                (repoData.repository.languages?.nodes ?? [])
+                    .map((language: any) => language?.name)
+                    .filter((language: string | undefined): language is string => Boolean(language));
+            const repo = new Repo(repoName,repoCreatedAt,repoCommitCount,repoLanguages);
             repo.fillBranches(repoData.repository.refs?.nodes ?? []);
             this.Repos.push(repo);
         }

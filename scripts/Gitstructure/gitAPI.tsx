@@ -42,6 +42,11 @@ export function getRepos(user:string){
                     repository {
                     name
                     createdAt
+                    languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+                        nodes {
+                        name
+                        }
+                    }
                     defaultBranchRef {
                         target {
                         ... on Commit {

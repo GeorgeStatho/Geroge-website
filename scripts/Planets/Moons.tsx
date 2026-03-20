@@ -1,3 +1,5 @@
+import { Branch } from "../Gitstructure/Branch";
+
 
 export class Moon{
     name:string;
@@ -12,8 +14,9 @@ export class Moon{
         this.importance=0;
     }
 
-    GitToMoon(){
-        
+    CreateMoon(branch:Branch){
+        this.name=branch.name;
+        this
     }
 
     
