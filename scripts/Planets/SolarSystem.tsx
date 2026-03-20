@@ -16,7 +16,7 @@ class SolarSystem{
         for (const repo of this.user.Repos) {
           planet=new Planet(repo.name);
     
-          for (const [branchName, commits] of Object.entries(repo.branches)) {
+          for (const branch of repo.branches) {
             
             
           }

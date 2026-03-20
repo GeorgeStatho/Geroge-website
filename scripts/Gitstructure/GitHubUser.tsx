@@ -21,7 +21,7 @@ export class GitUser{
             const repoCommitCount =
                 repoData.repository.defaultBranchRef?.target?.history?.totalCount ?? 0;
             const repo = new Repo(repoName,repoCreatedAt,repoCommitCount);
-            repo.createRepoData(repoData.repository.refs?.nodes ?? []);
+            repo.fillBranches(repoData.repository.refs?.nodes ?? []);
             this.Repos.push(repo);
         }
     }

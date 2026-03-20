@@ -31,14 +31,14 @@ export class GitTree3D{
       );
       this.nodes.push(repoNode);
 
-      for (const [branchName, commits] of Object.entries(repo.branches)) {
+      for (const branch of repo.branches) {
         const branchNode = new GitNode3D(
-          branchName,
+          branch.name,
           repoNode,
           );
         this.nodes.push(branchNode);
 
-        this.fillBranch(branchNode, commits, 0);
+        this.fillBranch(branchNode, branch.commits, 0);
       }
     }
   }

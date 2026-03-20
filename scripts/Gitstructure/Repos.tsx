@@ -1,37 +1,29 @@
-import Commit from "./Commits";
+import { Branch } from "./Branch";
+
 export class Repo{
     name:string;
     date:string;
     commitCount:number;
-    branches:Record<string,Commit[]>;
+    branches:Branch[];
 
     constructor(name:string,date:string,commitCount:number=0){
         this.name=name;
         this.date=date;
         this.commitCount=commitCount;
-        this.branches={};        
+        this.branches=[];        
     }
 
-    createRepoData(branchNodes: any[] = []) {
-        this.branches = {};
+    fillBranches(branchNodes: any[] = []) {
+        this.branches = [];
 
         for (const branch of branchNodes) {
-            this.branches[branch.name] = [];
-
-            const commits = branch.target?.history?.nodes ?? [];
-
-            for (const commit of commits) {
-                this.branches[branch.name].push(
-                    new Commit(
-                        commit.messageHeadline,
-                        commit.committedDate,
-                        commit.additions + commit.deletions
-                    )
-                );
-            }
+            const branchData = new Branch(
+                branch.name,
+                branch.target?.committedDate ?? "",
+                branch.target?.history?.totalCount ?? 0
+            );
+            branchData.fillCommits(branch.target?.history?.nodes ?? []);
+            this.branches.push(branchData);
         }
     }
-
-
-
 }

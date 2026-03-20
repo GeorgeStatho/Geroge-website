@@ -56,7 +56,9 @@ export function getRepos(user:string){
                         name
                         target {
                             ... on Commit {
+                            committedDate
                             history(first: 10) {
+                                totalCount
                                 nodes {
                                 oid
                                 messageHeadline
