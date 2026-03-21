@@ -2,7 +2,7 @@ import { Planet } from "./Planets";
 
 import { GitUser } from "../Gitstructure/GitHubUser";
 
-class SolarSystem{
+export class SolarSystem{
     planets:Planet[];
     user:GitUser;
     constructor(name:string){
@@ -10,21 +10,26 @@ class SolarSystem{
         this.user=new GitUser(name)
     }
 
-    async createPlanets() {
+    createUserPlanet(){
+        const userPlanet = this.planets[0];
+        userPlanet.color="#f4b942";
+        userPlanet.importance=999;
+        userPlanet.size=110;
+        userPlanet.isUserPlanet=true;
+        userPlanet.hasRing=false;
+    }
+
+    async createSolarSystem() {
+        this.createUserPlanet();
         await this.user.fillRepos();
         let planet:Planet;
         for (const repo of this.user.Repos) {
           planet=new Planet(repo.name);
-    
-          for (const branch of repo.branches) {
-            
-            
-          }
+          
+          planet.createPlanet(repo)
+          this.planets.push(planet);
         }
       }
 
-    calculateImportance(recency:number,numOfCommits:number,){
-
-    }
 
 }

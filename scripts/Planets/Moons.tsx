@@ -1,5 +1,5 @@
 import { Branch } from "../Gitstructure/Branch";
-
+import { calculateImportance } from "../utils/CalculateImportance";
 
 export class Moon{
     name:string;
@@ -13,10 +13,13 @@ export class Moon{
         this.type="";
         this.importance=0;
     }
+    
+    
 
     CreateMoon(branch:Branch){
         this.name=branch.name;
-        this
+        this.size=branch.commitCount;
+        this.importance=calculateImportance(branch.date,branch.commitCount,0)
     }
 
     
