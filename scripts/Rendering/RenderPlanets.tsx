@@ -29,7 +29,6 @@ function renderPlanetAtmosphere({ planet, glowSize }:PlanetLayerProps){
             style={{
                 width: `${glowSize}px`,
                 height: `${glowSize}px`,
-                background: `radial-gradient(circle, ${planet.color}55 0%, ${planet.color}22 45%, transparent 72%)`,
             }}
         />
     );
@@ -56,9 +55,7 @@ function renderPlanetRings({ planet, ringSize, moonCount }:PlanetLayerProps){
                         style={{
                             width: `${ringSize + sizeOffset}px`,
                             height: `${(ringSize + sizeOffset) * 0.42}px`,
-                            border: `2px solid ${planet.color}88`,
-                            boxShadow: `0 0 12px ${planet.color}44`,
-                            transform: `rotate(${tilt}deg)`,
+                            transform: `translate(-50%, -50%) rotate(${tilt}deg)`,
                         }}
                     />
                 );

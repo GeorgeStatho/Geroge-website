@@ -19,24 +19,55 @@
 
 .planet-atmosphere {
     position: absolute;
+    inset: -6%;
     border-radius: 50%;
-    filter: blur(10px);
-    transform: scale(1);
-    transition: transform 180ms ease, filter 180ms ease;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.10), rgba(255,255,255,0.03) 45%, rgba(0,0,0,0) 70%);
+    filter: blur(14px);
+    opacity: 0.9;
 }
 
 .planet-rings {
     position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 170%;
+    height: 42%;
+    transform: translate(-50%, -50%) rotate(-18deg);
     border-radius: 50%;
-    transform: rotate(-18deg);
+    background:
+        radial-gradient(ellipse at center,
+            rgba(255,255,255,0.0) 42%,
+            rgba(210,190,150,0.50) 50%,
+            rgba(255,240,210,0.75) 56%,
+            rgba(130,105,80,0.35) 62%,
+            rgba(255,255,255,0.0) 68%);
+    filter: blur(0.6px);
+    opacity: 0.95;
+}
+
+.planet-rim-light {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 28% 30%, transparent 58%, rgba(255,255,255,0.08) 68%, rgba(255,255,255,0.18) 75%, transparent 82%);
+    mix-blend-mode: screen;
+    pointer-events: none;
 }
 
 .planet-core {
     position: relative;
     border-radius: 50%;
     overflow: hidden;
-    transition: transform 180ms ease, box-shadow 180ms ease;
     z-index: 2;
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.28) 12%, rgba(255,255,255,0.0) 24%),
+        radial-gradient(circle at 35% 32%, var(--planet-light) 0%, var(--planet-mid) 38%, var(--planet-dark) 72%, #050814 100%);
+    box-shadow:
+        inset -18px -24px 34px rgba(0, 0, 0, 0.45),
+        inset 10px 10px 20px rgba(255, 255, 255, 0.10),
+        0 0 22px rgba(255,255,255,0.08);
 }
 
 .planet-surface {
