@@ -7,6 +7,7 @@ import { calculateImportance } from "../utils/CalculateImportance";
 
 export class Planet{
     name:string;
+    date:string;
     size:number;
     importance:number;
     color:string;
@@ -16,6 +17,7 @@ export class Planet{
     asteroids:Asteroid[];
     constructor(name:string){
         this.name=name;
+        this.date="";
         this.size=0;
         this.importance=0;
         this.color="";
@@ -26,15 +28,19 @@ export class Planet{
     }
 
     determineColor(languages:string[]){
-        return languageColors[languages[0]]
+        const primaryLanguage = languages[0]?.toLowerCase();
+        return languageColors[primaryLanguage] ?? "#94a3b8";
     }
 
     createPlanet(repo:Repo){
+        this.date=repo.date;
         this.importance=calculateImportance(repo.date,repo.commitCount,repo.branches.length);
         this.color=this.determineColor(repo.languages);
-        const moon=new Moon();
+        this.moons = [];
         for (let branch of repo.branches){
+            const moon=new Moon();
             moon.CreateMoon(branch);
+            this.moons.push(moon);
         }
     }
 

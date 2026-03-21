@@ -26,6 +26,17 @@
 }
 
 .solar-system-planet-slot {
-    position: relative;
+    position: absolute;
+    transform: translate(-50%, -50%);
     z-index: 1;
+}
+
+.solar-system-sun-slot {
+    left: 50%;
+    top: 50%;
+    z-index: 3;
+}
+
+.solar-system-orbiting-planet-slot {
+    z-index: 2;
 }

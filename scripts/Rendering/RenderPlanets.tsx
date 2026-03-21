@@ -1,6 +1,6 @@
 import React from "react";
 import { Planet } from "../Planets/Planets";
-import "./Planet.css";
+import "../../css/Planet.css";
 
 type RenderPlanetProps = {
     planet: Planet;
@@ -94,10 +94,14 @@ function renderUserPlanetCore({ planet, planetSize }:PlanetLayerProps){
 }
 
 function renderPlanetMoons({ planet, planetSize, moonCount }:PlanetLayerProps){
+    const visibleMoons = [...planet.moons]
+        .sort((left, right) => right.importance - left.importance)
+        .slice(0, 2);
+
     return (
         <div className="planet-moons">
-            {planet.moons.slice(0, 5).map((moon, index) => {
-                const angle = (Math.PI * 2 * index) / Math.max(moonCount, 1);
+            {visibleMoons.map((moon, index) => {
+                const angle = (Math.PI * 2 * index) / Math.max(visibleMoons.length, 1);
                 const orbitRadius = planetSize * 0.9 + 26 + index * 14;
                 const moonSize = clamp(Math.max(8, Math.sqrt(moon.size || 1) * 4), 8, 20);
                 const x = Math.cos(angle) * orbitRadius;
