@@ -36,24 +36,34 @@ function renderPlanetAtmosphere({ planet, glowSize }:PlanetLayerProps){
 }
 
 function renderPlanetRings({ planet, ringSize, moonCount }:PlanetLayerProps){
-    const showRing =
-        planet.hasRing &&
-        (planet.importance > 25 || moonCount > 2 || planet.asteroids.length > 0);
+    const ringCount = planet.hasRing ? Math.floor(planet.commitCount / 10) : 0;
+    const showRing = ringCount > 0;
 
     if (!showRing) {
         return null;
     }
 
     return (
-        <div
-            className="planet-rings"
-            style={{
-                width: `${ringSize}px`,
-                height: `${ringSize * 0.42}px`,
-                border: `2px solid ${planet.color}88`,
-                boxShadow: `0 0 12px ${planet.color}44`,
-            }}
-        />
+        <>
+            {Array.from({ length: ringCount }).map((_, index) => {
+                const sizeOffset = index * 10;
+                const tilt = index % 2 === 0 ? -18 : 18;
+
+                return (
+                    <div
+                        key={`planet-ring-${planet.name}-${index}`}
+                        className="planet-rings"
+                        style={{
+                            width: `${ringSize + sizeOffset}px`,
+                            height: `${(ringSize + sizeOffset) * 0.42}px`,
+                            border: `2px solid ${planet.color}88`,
+                            boxShadow: `0 0 12px ${planet.color}44`,
+                            transform: `rotate(${tilt}deg)`,
+                        }}
+                    />
+                );
+            })}
+        </>
     );
 }
 
@@ -85,6 +95,13 @@ function renderUserPlanetCore({ planet, planetSize }:PlanetLayerProps){
                 boxShadow: `0 0 34px ${planet.color}aa, 0 0 70px ${planet.color}55, inset -12px -14px 22px rgba(124, 59, 0, 0.35)`,
             }}
         >
+            {planet.imageUrl ? (
+                <img
+                    className="user-planet-avatar"
+                    src={planet.imageUrl}
+                    alt={`${planet.name} avatar`}
+                />
+            ) : null}
             <div className="planet-surface user-planet-surface" />
             <div className="planet-highlight user-planet-highlight" />
             <div className="sun-corona sun-corona-outer" />
@@ -96,13 +113,29 @@ function renderUserPlanetCore({ planet, planetSize }:PlanetLayerProps){
 function renderPlanetMoons({ planet, planetSize, moonCount }:PlanetLayerProps){
     const visibleMoons = [...planet.moons]
         .sort((left, right) => right.importance - left.importance)
-        .slice(0, 2);
+        .slice(0, 4);
+    const moonOrbitSize = planetSize + 68;
+
+    function getMoonAngle(index:number){
+        const seed = Math.sin((planet.importance + 1) * 17 + (index + 1) * 97 + visibleMoons.length * 31) * 10000;
+        const normalizedSeed = seed - Math.floor(seed);
+        return normalizedSeed * Math.PI * 2;
+    }
 
     return (
         <div className="planet-moons">
+            {visibleMoons.length > 0 ? (
+                <div
+                    className="moon-orbit-ring"
+                    style={{
+                        width: `${moonOrbitSize}px`,
+                        height: `${moonOrbitSize}px`,
+                    }}
+                />
+            ) : null}
             {visibleMoons.map((moon, index) => {
-                const angle = (Math.PI * 2 * index) / Math.max(visibleMoons.length, 1);
-                const orbitRadius = planetSize * 0.9 + 26 + index * 14;
+                const angle = getMoonAngle(index);
+                const orbitRadius = moonOrbitSize / 2;
                 const moonSize = clamp(Math.max(8, Math.sqrt(moon.size || 1) * 4), 8, 20);
                 const x = Math.cos(angle) * orbitRadius;
                 const y = Math.sin(angle) * orbitRadius;
@@ -165,7 +198,7 @@ function renderUserPlanet(layerProps:PlanetLayerProps){
 }
 
 function RenderPlanet({ planet }:RenderPlanetProps){
-    const planetSize = clamp(planet.size || planet.importance || 48,36,120);
+    const planetSize = planet.size;
     const glowSize = planetSize * 1.8;
     const ringSize = planetSize * 1.55;
     const moonCount = planet.moons.length;

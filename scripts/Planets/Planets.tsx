@@ -1,13 +1,15 @@
 import { Moon } from "./Moons";
 import { Asteroid } from "./AsteroidRing";
 import { Repo } from "../Gitstructure/Repos";
-import { DatetoInt } from "../utils/DateToInt";
 import languageColors from "../utils/languageColors";
 import { calculateImportance } from "../utils/CalculateImportance";
+import { scaleSqrt } from "../utils/Scales";
 
 export class Planet{
     name:string;
     date:string;
+    imageUrl:string;
+    commitCount:number;
     size:number;
     importance:number;
     color:string;
@@ -18,6 +20,8 @@ export class Planet{
     constructor(name:string){
         this.name=name;
         this.date="";
+        this.imageUrl="";
+        this.commitCount=0;
         this.size=0;
         this.importance=0;
         this.color="";
@@ -34,7 +38,9 @@ export class Planet{
 
     createPlanet(repo:Repo){
         this.date=repo.date;
+        this.commitCount=repo.commitCount;
         this.importance=calculateImportance(repo.date,repo.commitCount,repo.branches.length);
+        this.size=scaleSqrt(this.importance,80,70,40,50);
         this.color=this.determineColor(repo.languages);
         this.moons = [];
         for (let branch of repo.branches){

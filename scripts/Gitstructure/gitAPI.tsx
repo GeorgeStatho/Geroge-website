@@ -42,6 +42,7 @@ export function getRepos(user:string){
     return runQuery(`
         query Repos {
             user(login: "${user}") {
+                avatarUrl(size: 256)
                 contributionsCollection {
                 commitContributionsByRepository(maxRepositories: 100) {
                     repository {

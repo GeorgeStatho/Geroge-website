@@ -4,7 +4,7 @@ import { SolarSystem } from "../Planets/SolarSystem";
 import RenderPlanet from "./RenderPlanets";
 import "./RenderSolarSystem.css";
 
-const ringSizes = [280, 400, 540, 700, 880];
+const ringSizes = [380, 600, 840, 1000, 1100];
 
 async function createSolarSystem(name:string){
     const system = new SolarSystem(name);

@@ -3,15 +3,18 @@ import { getRepos } from "./gitAPI";
 
 export class GitUser{
     name:string;
+    avatarUrl:string;
     Repos:Repo[];
 
     constructor(name:string){
         this.name=name;
+        this.avatarUrl="";
         this.Repos=[];
     }
 
     async fillRepos(){
         const result =await getRepos(this.name);
+        this.avatarUrl = result.data.user.avatarUrl ?? "";
         const repoNodes =
         result.data.user.contributionsCollection.commitContributionsByRepository;
 
