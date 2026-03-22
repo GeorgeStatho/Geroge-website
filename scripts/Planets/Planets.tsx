@@ -40,7 +40,6 @@ export class Planet{
         this.date=repo.date;
         this.commitCount=repo.commitCount;
         this.importance=calculateImportance(repo.date,repo.commitCount,repo.branches.length);
-        this.size = scaleSqrt(this.importance, 0, 100, 40, 90);
         this.color=this.determineColor(repo.languages);
         this.moons = [];
         for (let branch of repo.branches){
@@ -48,6 +47,13 @@ export class Planet{
             moon.CreateMoon(branch);
             this.moons.push(moon);
         }
+    }
+
+    setRelativeSize(averageImportantCommitCount:number){
+        const safeAverage = Math.max(averageImportantCommitCount, 1);
+        const relativeCommitCount = this.commitCount / safeAverage;
+
+        this.size = scaleSqrt(relativeCommitCount, 0.2, 2.4, 28, 64);
     }
 
 }

@@ -20,16 +20,39 @@ export class SolarSystem{
         userPlanet.imageUrl=this.user.avatarUrl;
     }
 
+    applyPlanetSizes(){
+        const repoPlanets = this.planets.filter((planet) => !planet.isUserPlanet);
+
+        if (repoPlanets.length === 0) {
+            return;
+        }
+
+        const importantPlanets = [...repoPlanets]
+            .sort((left, right) => right.importance - left.importance)
+            .slice(0, 5);
+        const totalImportantCommits = importantPlanets.reduce(
+            (total, planet) => total + planet.commitCount,
+            0
+        );
+        const averageImportantCommitCount = totalImportantCommits / Math.max(importantPlanets.length, 1);
+
+        for (const planet of repoPlanets) {
+            planet.setRelativeSize(averageImportantCommitCount);
+        }
+    }
+
     async createSolarSystem() {
         await this.user.fillRepos();
         this.createUserPlanet();
         let planet:Planet;
         for (const repo of this.user.Repos) {
           planet=new Planet(repo.name);
-          
+
           planet.createPlanet(repo)
           this.planets.push(planet);
         }
+
+        this.applyPlanetSizes();
       }
 
 

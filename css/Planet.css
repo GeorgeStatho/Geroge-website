@@ -9,6 +9,12 @@
     justify-content: center;
 }
 
+.planet-core-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
 .planet-visual-anchor {
     position: absolute;
     left: 50%;

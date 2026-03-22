@@ -1,6 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import RenderSolarSystem, { createSolarSystem } from "./RenderSolarSystem";
+import RenderSolarSystem from "./RenderSolarSystem";
+import { createSolarSystem } from "./SolarSystemHelpers";
 
 async function main(){
     const host = document.createElement("div");
@@ -8,7 +9,7 @@ async function main(){
     document.body.appendChild(host);
 
     const root = createRoot(host);
-    const system = await createSolarSystem("georgestatho");
+    const system = await createSolarSystem("davideast");
 
     root.render(<RenderSolarSystem system={system} />);
 }

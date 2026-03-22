@@ -24,6 +24,7 @@ export class Repo{
                 branch.target?.committedDate ?? "",
                 branch.target?.history?.totalCount ?? 0
             );
+            // getRepos no longer loads individual branch commits; keep the array shape intact.
             branchData.fillCommits(branch.target?.history?.nodes ?? []);
             this.branches.push(branchData);
         }

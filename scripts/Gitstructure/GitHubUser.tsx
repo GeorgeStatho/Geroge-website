@@ -14,9 +14,17 @@ export class GitUser{
 
     async fillRepos(){
         const result =await getRepos(this.name);
-        this.avatarUrl = result.data.user.avatarUrl ?? "";
+        const userData = result?.data?.user;
+
+        if (!userData) {
+            throw new Error(
+                `GitHub user "${this.name}" was not found or did not return repository contribution data.`
+            );
+        }
+
+        this.avatarUrl = userData.avatarUrl ?? "";
         const repoNodes =
-        result.data.user.contributionsCollection.commitContributionsByRepository;
+        userData.contributionsCollection?.commitContributionsByRepository ?? [];
 
         for (const repoData of repoNodes) {
             const repoName = repoData.repository.name;
