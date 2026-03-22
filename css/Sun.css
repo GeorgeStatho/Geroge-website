@@ -8,6 +8,10 @@
 
 .user-planet-core {
     overflow: visible;
+    box-shadow:
+        0 0 42px rgba(255, 210, 90, 0.72),
+        0 0 96px rgba(255, 162, 35, 0.32),
+        inset -12px -14px 22px rgba(124, 59, 0, 0.24);
 }
 
 .user-planet-avatar {
@@ -42,11 +46,17 @@
 }
 
 .sun-corona-inner {
+    opacity: 0.92;
+    filter: blur(8px);
+    transform: scale(1.06);
     border: 2px solid rgba(255, 223, 112, 0.38);
     box-shadow: 0 0 16px rgba(255, 194, 72, 0.42);
 }
 
 .sun-corona-outer {
+    opacity: 0.82;
+    filter: blur(18px);
+    transform: scale(1.16);
     inset: -18%;
     border: 1px solid rgba(255, 196, 84, 0.22);
     box-shadow: 0 0 26px rgba(255, 170, 48, 0.22);

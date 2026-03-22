@@ -1,0 +1,41 @@
+/* Biome-specific ring tint */
+
+.planet-rings.biome-gas {
+    background:
+        radial-gradient(ellipse at center,
+            rgba(255,255,255,0.0) 40%,
+            rgba(214,178,122,0.16) 47%,
+            rgba(255,234,204,0.30) 52%,
+            rgba(153,108,70,0.18) 58%,
+            rgba(255,255,255,0.0) 66%);
+}
+
+.planet-rings.biome-ocean {
+    background:
+        radial-gradient(ellipse at center,
+            rgba(255,255,255,0.0) 40%,
+            rgba(120,200,255,0.10) 47%,
+            rgba(210,245,255,0.22) 52%,
+            rgba(80,130,180,0.12) 58%,
+            rgba(255,255,255,0.0) 66%);
+}
+
+.planet-rings.biome-rocky {
+    background:
+        radial-gradient(ellipse at center,
+            rgba(255,255,255,0.0) 40%,
+            rgba(180,150,120,0.08) 47%,
+            rgba(220,200,180,0.14) 52%,
+            rgba(100,80,60,0.10) 58%,
+            rgba(255,255,255,0.0) 66%);
+}
+
+.planet-rings.biome-tech {
+    background:
+        radial-gradient(ellipse at center,
+            rgba(255,255,255,0.0) 40%,
+            rgba(90,190,255,0.16) 47%,
+            rgba(170,235,255,0.28) 52%,
+            rgba(50,100,150,0.16) 58%,
+            rgba(255,255,255,0.0) 66%);
+}

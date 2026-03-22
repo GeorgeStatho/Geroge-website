@@ -11,8 +11,8 @@
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.02);
     pointer-events: none;
 }
 
@@ -20,6 +20,7 @@
     position: absolute;
     left: 50%;
     top: 50%;
+    opacity: 0.92;
     transform: translate(-50%, -50%) rotate(var(--moon-orbit-angle));
     transform-origin: center;
     animation: moon-orbit-spin var(--moon-orbit-duration) linear infinite;
@@ -34,6 +35,10 @@
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, #f8fafc 0%, #cbd5e1 55%, #475569 100%);
     box-shadow: 0 0 10px rgba(248, 250, 252, 0.28);
+}
+
+.planet-moons .moon {
+    transform: translate(-50%, -50%) scale(0.94);
 }
 
 @keyframes moon-orbit-spin {

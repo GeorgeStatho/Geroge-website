@@ -8,6 +8,13 @@ import {
     getPlanetHref,
 } from "./PlanetRenderHelpers";
 import "../../css/Planet.css";
+import "../../css/planet-biomes/RockyBiome.css";
+import "../../css/planet-biomes/DeadBiome.css";
+import "../../css/planet-biomes/GasBiome.css";
+import "../../css/planet-biomes/OceanBiome.css";
+import "../../css/planet-biomes/TechBiome.css";
+import "../../css/planet-biomes/StarBiome.css";
+import "../../css/planet-biomes/BiomeRingTint.css";
 import "../../css/Moon.css";
 import "../../css/Sun.css";
 import "../../css/Labels.css";
@@ -151,7 +158,7 @@ function renderUserPlanetCore({ planet, planetSize }:PlanetLayerProps, githubUse
 function renderPlanetMoons({ planet, planetSize, moonCount }:PlanetLayerProps){
     const visibleMoons = [...planet.moons]
         .sort((left, right) => right.importance - left.importance)
-        .slice(0, 4);
+        .slice(0, 5);
     const moonOrbitSize = planetSize + 68;
     const maxMoonSize = Math.max(...visibleMoons.map((moon) => moon.size || 1), 1);
     const averageMoonSize =

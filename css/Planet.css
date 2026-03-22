@@ -57,10 +57,10 @@
     position: absolute;
     left: 50%;
     top: 50%;
+    transform: translate(-50%, -50%) rotate(var(--ring-tilt, -18deg));
     transform-origin: center;
     border-radius: 50%;
     pointer-events: none;
-    --ring-tilt: -18deg;
     animation: planet-ring-bob 4.8s ease-in-out infinite;
 }
 
@@ -108,6 +108,23 @@
     box-shadow:
         0 0 18px rgba(255, 255, 255, 0.06),
         0 0 30px color-mix(in srgb, var(--planet-color, #7dd3fc) 18%, transparent);
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        filter 180ms ease;
+}
+
+.planet-core-link:hover .planet-core,
+.planet-core-link:focus-visible .planet-core {
+    transform: scale(1.06);
+    box-shadow:
+        0 0 22px rgba(255, 255, 255, 0.12),
+        0 0 42px color-mix(in srgb, var(--planet-color, #7dd3fc) 36%, transparent);
+    filter: brightness(1.06) saturate(1.08);
+}
+
+.planet-core-link:focus-visible {
+    outline: none;
 }
 
 /* Base spherical shading */
@@ -188,7 +205,7 @@
     filter: blur(0.5px);
     mix-blend-mode: screen;
     pointer-events: none;
-    animation: highlight-breathe 5s ease-in-out infinite, highlight-drift 18s ease-in-out infinite;
+    animation: highlight-breathe 5s ease-in-out infinite;
 }
 
 .planet-feature {
@@ -204,277 +221,6 @@
 }
 
 /* ============================= */
-/* Rocky biome                   */
-/* ============================= */
-
-.planet-core[data-biome="rocky"] .planet-texture {
-    background:
-        radial-gradient(circle at 68% 40%, rgba(80, 35, 20, 0.34) 0%, transparent 18%),
-        radial-gradient(circle at 45% 62%, rgba(40, 20, 10, 0.24) 0%, transparent 20%),
-        radial-gradient(circle at 30% 38%, rgba(255, 210, 170, 0.12) 0%, transparent 22%),
-        radial-gradient(circle at 58% 76%, rgba(255, 255, 255, 0.08) 0%, transparent 14%);
-    left: -10%;
-    width: 122%;
-    height: 100%;
-    animation: texture-drift-rocky 11s linear infinite;
-}
-
-.planet-core[data-biome="rocky"] .planet-feature {
-    background:
-        radial-gradient(circle at 66% 42%, rgba(40, 18, 10, 0.35) 0%, rgba(40,18,10,0.12) 10%, transparent 18%),
-        radial-gradient(circle at 45% 63%, rgba(30, 14, 8, 0.22) 0%, transparent 16%);
-    mix-blend-mode: multiply;
-    left: -8%;
-    width: 116%;
-    height: 100%;
-    animation: rocky-feature-drift 14s linear infinite;
-}
-
-.planet-core[data-biome="rocky"] .planet-shadow {
-    animation: shadow-drift-rocky 16s ease-in-out infinite;
-}
-
-/* ============================= */
-/* Dead biome                    */
-/* ============================= */
-
-.planet-core[data-biome="dead"] .planet-base {
-    background:
-        radial-gradient(circle at 30% 28%,
-            rgba(255,255,255,0.62) 0%,
-            rgba(255,255,255,0.16) 10%,
-            rgba(255,255,255,0.00) 24%),
-        radial-gradient(circle at 38% 35%,
-            #9ca3af 0%,
-            #6b7280 42%,
-            #374151 72%,
-            #020617 100%);
-    box-shadow:
-        inset -16px -22px 28px rgba(0, 0, 0, 0.55),
-        inset 6px 6px 12px rgba(255, 255, 255, 0.04);
-}
-
-.planet-core[data-biome="dead"] .planet-texture {
-    background:
-        radial-gradient(circle at 66% 34%, rgba(36, 36, 36, 0.36) 0%, transparent 16%),
-        radial-gradient(circle at 48% 62%, rgba(22, 22, 22, 0.26) 0%, transparent 18%),
-        radial-gradient(circle at 34% 46%, rgba(168, 172, 180, 0.12) 0%, transparent 18%),
-        radial-gradient(circle at 72% 68%, rgba(20, 20, 20, 0.18) 0%, transparent 12%);
-    opacity: 0.62;
-}
-
-.planet-core[data-biome="dead"] .planet-feature {
-    background:
-        radial-gradient(circle at 64% 36%, rgba(20, 20, 20, 0.42) 0%, rgba(20,20,20,0.16) 8%, transparent 16%),
-        radial-gradient(circle at 46% 63%, rgba(12, 12, 12, 0.28) 0%, transparent 14%),
-        radial-gradient(circle at 29% 48%, rgba(210, 214, 220, 0.08) 0%, transparent 10%);
-    mix-blend-mode: multiply;
-    opacity: 0.82;
-}
-
-.planet-core[data-biome="dead"] .planet-rim-light {
-    opacity: 0.45;
-}
-
-.planet-core[data-biome="dead"] .planet-highlight {
-    opacity: 0.55;
-    animation: highlight-breathe 8s ease-in-out infinite;
-}
-
-.planet-core[data-biome="dead"] .planet-shadow {
-    opacity: 0.88;
-}
-
-/* ============================= */
-/* Gas biome                     */
-/* ============================= */
-
-.planet-core[data-biome="gas"] .planet-texture {
-    background:
-        repeating-linear-gradient(
-            180deg,
-            rgba(255,255,255,0.12) 0px,
-            rgba(255,255,255,0.12) 7px,
-            rgba(255,180,110,0.18) 7px,
-            rgba(255,180,110,0.18) 16px,
-            rgba(155,80,35,0.18) 16px,
-            rgba(155,80,35,0.18) 28px,
-            rgba(255,235,205,0.12) 28px,
-            rgba(255,235,205,0.12) 36px
-        );
-    opacity: 0.78;
-    top: -12%;
-    left: 0;
-    width: 100%;
-    height: 124%;
-    animation: gas-band-drift 10s linear infinite;
-}
-
-.planet-core[data-biome="gas"] .planet-feature {
-    background:
-        radial-gradient(ellipse at 65% 58%, rgba(190, 70, 35, 0.38) 0%, rgba(190,70,35,0.18) 10%, transparent 19%);
-    mix-blend-mode: multiply;
-    left: -18%;
-    width: 136%;
-    height: 100%;
-    animation: feature-drift-medium 8s linear infinite;
-}
-
-.planet-core[data-biome="gas"] .planet-shadow {
-    animation: shadow-drift-gas 14s ease-in-out infinite;
-}
-
-/* ============================= */
-/* Ocean biome                   */
-/* ============================= */
-
-.planet-core[data-biome="ocean"] .planet-texture {
-    background:
-        radial-gradient(circle at 40% 60%, rgba(26, 120, 90, 0.42) 0%, transparent 18%),
-        radial-gradient(circle at 58% 52%, rgba(40, 140, 90, 0.30) 0%, transparent 13%),
-        radial-gradient(circle at 63% 38%, rgba(235, 245, 255, 0.40) 0%, transparent 14%),
-        radial-gradient(circle at 48% 42%, rgba(240, 250, 255, 0.26) 0%, transparent 12%);
-    opacity: 0.78;
-    left: -18%;
-    width: 136%;
-    height: 100%;
-    animation: texture-drift-slow 14s linear infinite;
-}
-
-.planet-core[data-biome="ocean"] .planet-feature {
-    background:
-        conic-gradient(
-            from 210deg at 50% 50%,
-            transparent 0deg 18deg,
-            rgba(255,255,255,0.14) 18deg 40deg,
-            transparent 40deg 78deg,
-            rgba(255,255,255,0.10) 78deg 110deg,
-            transparent 110deg 360deg
-        );
-    mix-blend-mode: screen;
-    opacity: 0.45;
-    left: -10%;
-    width: 120%;
-    height: 100%;
-    animation: feature-drift-slow 20s linear infinite;
-}
-
-.planet-core[data-biome="ocean"] .planet-shadow {
-    animation: shadow-drift-ocean 18s ease-in-out infinite;
-}
-
-/* ============================= */
-/* Tech biome                    */
-/* ============================= */
-
-.planet-core[data-biome="tech"] .planet-texture {
-    background:
-        repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.05) 0px,
-            rgba(255,255,255,0.05) 2px,
-            transparent 2px,
-            transparent 12px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            rgba(255,255,255,0.04) 0px,
-            rgba(255,255,255,0.04) 2px,
-            transparent 2px,
-            transparent 16px
-        );
-    opacity: 0.52;
-    left: -12%;
-    width: 124%;
-    height: 100%;
-    animation: texture-drift-medium 10s linear infinite;
-}
-
-.planet-core[data-biome="tech"] .planet-feature {
-    background:
-        linear-gradient(
-            180deg,
-            transparent 0%,
-            transparent 44%,
-            rgba(120, 220, 255, 0.22) 47%,
-            rgba(120, 220, 255, 0.34) 50%,
-            rgba(120, 220, 255, 0.18) 53%,
-            transparent 58%,
-            transparent 100%
-        );
-    mix-blend-mode: screen;
-    left: -15%;
-    width: 130%;
-    height: 100%;
-    animation: texture-drift-medium 8s linear infinite;
-}
-
-.planet-core[data-biome="tech"] .planet-shadow {
-    animation: shadow-drift-tech 12s ease-in-out infinite;
-}
-
-/* ============================= */
-/* Star biome                    */
-/* ============================= */
-
-.planet-core[data-biome="star"] .planet-base {
-    background:
-        radial-gradient(circle at 32% 30%,
-            rgba(255,255,220,1.0) 0%,
-            rgba(255,245,160,0.92) 12%,
-            rgba(255,195,40,0.88) 38%,
-            rgba(255,120,10,0.82) 68%,
-            rgba(120,30,0,0.95) 100%);
-    box-shadow:
-        inset -12px -18px 24px rgba(120, 40, 0, 0.28),
-        0 0 28px rgba(255, 190, 40, 0.45),
-        0 0 80px rgba(255, 160, 20, 0.24);
-}
-
-.planet-core[data-biome="star"] .planet-texture {
-    background:
-        radial-gradient(circle at 36% 44%, rgba(255,255,255,0.16) 0%, transparent 14%),
-        radial-gradient(circle at 60% 52%, rgba(255,120,40,0.22) 0%, transparent 18%),
-        radial-gradient(circle at 46% 30%, rgba(255,220,80,0.16) 0%, transparent 12%);
-    opacity: 0.82;
-    animation: star-flicker 4s ease-in-out infinite;
-}
-
-.planet-core[data-biome="star"] .planet-shadow {
-    opacity: 0.36;
-}
-
-.planet-core[data-biome="star"] .planet-rim-light {
-    opacity: 1;
-}
-
-.planet-core[data-biome="star"] .planet-feature {
-    background:
-        radial-gradient(circle at 20% 52%, rgba(255,240,150,0.24) 0%, transparent 16%),
-        radial-gradient(circle at 74% 32%, rgba(255,160,40,0.16) 0%, transparent 14%);
-    mix-blend-mode: screen;
-    animation: star-flicker-2 6s ease-in-out infinite;
-}
-
-/* ============================= */
-/* Biome-specific ring tint      */
-/* ============================= */
-
-.planet-rings.biome-tech {
-    background:
-        radial-gradient(ellipse at center,
-            rgba(255,255,255,0.0) 40%,
-            rgba(110,190,255,0.18) 47%,
-            rgba(170,235,255,0.34) 52%,
-            rgba(60,120,170,0.18) 58%,
-            rgba(255,255,255,0.0) 66%);
-}
-
-.planet-rings.biome-gas {
-    filter: blur(0.5px) saturate(1.08);
-}
-
-/* ============================= */
 /* Moons                         */
 /* ============================= */
 
@@ -483,9 +229,9 @@
     border-radius: 50%;
     z-index: 5;
     box-shadow:
-        inset -3px -4px 6px rgba(0,0,0,0.45),
-        inset 2px 2px 4px rgba(255,255,255,0.10),
-        0 0 10px rgba(255,255,255,0.08);
+        inset -2px -3px 5px rgba(0,0,0,0.45),
+        inset 1px 1px 3px rgba(255,255,255,0.8),
+        0 0 6px rgba(255,255,255,0.05);
     animation: moon-breathe 4.5s ease-in-out infinite;
 }
 
@@ -495,8 +241,8 @@
     inset: -12%;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);
-    opacity: 0.28;
-    filter: blur(4px);
+    opacity: 0.18;
+    filter: blur(3px);
     z-index: -1;
 }
 
@@ -508,8 +254,8 @@
 .moon-label,
 .planet-label-meta {
     text-shadow:
-        0 0 8px rgba(0,0,0,0.8),
-        0 0 16px rgba(0,0,0,0.55);
+        0 0 6px rgba(0,0,0,0.68),
+        0 0 10px rgba(0,0,0,0.45);
 }
 
 .planet-label-meta {
@@ -522,40 +268,6 @@
 /* Animations                    */
 /* ============================= */
 
-@keyframes gas-band-drift {
-    from { transform: translateY(-3%); }
-    to   { transform: translateY(12%); }
-}
-
-@keyframes texture-drift-rocky {
-    from { transform: translateX(-6%); }
-    to   { transform: translateX(18%); }
-}
-
-@keyframes rocky-feature-drift {
-    from { transform: translateX(-4%); }
-    to   { transform: translateX(12%); }
-}
-
-@keyframes texture-drift-medium {
-    from { transform: translateX(-8%); }
-    to   { transform: translateX(22%); }
-}
-
-@keyframes texture-drift-slow {
-    from { transform: translateX(-5%); }
-    to   { transform: translateX(18%); }
-}
-
-@keyframes feature-drift-medium {
-    from { transform: translateX(-10%); }
-    to   { transform: translateX(24%); }
-}
-
-@keyframes feature-drift-slow {
-    from { transform: translateX(-6%); }
-    to   { transform: translateX(14%); }
-}
 
 @keyframes star-flicker {
     0%, 100% { opacity: 0.78; transform: scale(1); }
@@ -613,49 +325,7 @@
     }
 }
 
-@keyframes shadow-drift-rocky {
-    0%, 100% {
-        transform: translateX(0%) scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: translateX(4%) scale(1.01);
-        opacity: 0.92;
-    }
-}
 
-@keyframes shadow-drift-gas {
-    0%, 100% {
-        transform: translateX(0%) scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: translateX(6%) scale(1.015);
-        opacity: 0.88;
-    }
-}
-
-@keyframes shadow-drift-ocean {
-    0%, 100% {
-        transform: translateX(0%) scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: translateX(3%) scale(1.01);
-        opacity: 0.94;
-    }
-}
-
-@keyframes shadow-drift-tech {
-    0%, 100% {
-        transform: translateX(0%) scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: translateX(5%) scale(1.01);
-        opacity: 0.9;
-    }
-}
 
 @keyframes moon-breathe {
     0%, 100% {
