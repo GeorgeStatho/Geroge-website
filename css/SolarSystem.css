@@ -1,0 +1,105 @@
+.solar-system-scene,
+.solar-system-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 18%),
+        radial-gradient(circle at center, rgba(30, 41, 59, 0.18) 0%, rgba(2, 6, 23, 0.08) 38%, transparent 72%),
+        linear-gradient(180deg, #020611 0%, #040814 45%, #02040c 100%);
+}
+
+/* Orbit guide layer */
+.solar-system-rings {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    transform-style: preserve-3d;
+}
+
+/* Elliptical orbit guides */
+.solar-system-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    pointer-events: none;
+    box-shadow:
+        0 0 14px rgba(255, 255, 255, 0.03),
+        0 0 0 1px rgba(255, 255, 255, 0.015),
+        inset 0 0 14px rgba(148, 163, 184, 0.025);
+}
+
+/* Shared slot rules */
+.solar-system-planet-slot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: center;
+    will-change: transform, opacity;
+}
+
+/* Sun placement */
+.solar-system-sun-slot {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 200;
+}
+
+/* Orbiting planets */
+.solar-system-orbiting-planet-slot {
+    transform-origin: center;
+    transform-style: preserve-3d;
+}
+
+/* Optional cinematic depth haze */
+.solar-system-orbiting-planet-slot::after {
+    content: "";
+    position: absolute;
+    inset: -18px;
+    pointer-events: none;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.03), transparent 72%);
+    opacity: 0.22;
+    filter: blur(12px);
+    z-index: -1;
+}
+
+/* Optional star speckles for the scene */
+.solar-system-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle at 12% 18%, rgba(255,255,255,0.55) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 28% 72%, rgba(255,255,255,0.4) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 42% 26%, rgba(255,255,255,0.38) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 63% 64%, rgba(255,255,255,0.35) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 78% 22%, rgba(255,255,255,0.42) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 88% 58%, rgba(255,255,255,0.36) 0 1px, transparent 1.6px);
+    opacity: 0.45;
+    z-index: 0;
+}
+
+/* Very soft ambient light bloom around the center */
+.solar-system-container::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 520px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 220, 120, 0.08) 0%, rgba(255, 180, 60, 0.035) 35%, transparent 72%);
+    filter: blur(24px);
+    z-index: 0;
+}

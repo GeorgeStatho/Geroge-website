@@ -3,10 +3,9 @@ import { createRoot } from "react-dom/client";
 import RenderSolarSystem, { createSolarSystem } from "./RenderSolarSystem";
 
 async function main(){
-    const host = document.getElementById("root");
-    if (!host) {
-        throw new Error('Missing root element with id "root".');
-    }
+    const host = document.createElement("div");
+    host.id = "solar-system-root";
+    document.body.appendChild(host);
 
     const root = createRoot(host);
     const system = await createSolarSystem("georgestatho");

@@ -2,7 +2,7 @@ import React from "react";
 import { Planet } from "../Planets/Planets";
 import { SolarSystem } from "../Planets/SolarSystem";
 import RenderPlanet from "./RenderPlanets";
-import "./RenderSolarSystem.css";
+import "../../css/SolarSystem.css";
 
 const ringSizes = [380, 600, 840, 1000, 1100];
 
@@ -12,7 +12,9 @@ async function createSolarSystem(name:string){
     return system;
 }
 
-export function RenderRings(){
+export function RenderRings() {
+    const tilt = 0.48;
+
     return (
         <div className="solar-system-rings" aria-hidden="true">
             {ringSizes.map((size, index) => (
@@ -21,7 +23,7 @@ export function RenderRings(){
                     className="solar-system-ring"
                     style={{
                         width: `${size}px`,
-                        height: `${size}px`,
+                        height: `${size * tilt}px`,
                         opacity: `${0.34 - index * 0.04}`,
                     }}
                 />
@@ -58,17 +60,35 @@ function getRecencyRingIndex(planet:Planet){
     return 4;
 }
 
-function getPlanetSlotStyle(ringIndex:number,slotIndex:number,slotCount:number){
+function getPlanetSlotStyle(ringIndex: number, slotIndex: number, slotCount: number) {
     const ringRadius = ringSizes[Math.min(ringIndex, ringSizes.length - 1)] / 2;
-    const seed = Math.sin((ringIndex + 1) * 97 + (slotIndex + 1) * 131 + slotCount * 53) * 10000;
+
+    const baseAngle = (slotIndex / Math.max(slotCount, 1)) * Math.PI * 2;
+
+    const seed =
+        Math.sin((ringIndex + 1) * 97 + (slotIndex + 1) * 131 + slotCount * 53) * 10000;
     const normalizedSeed = seed - Math.floor(seed);
-    const angle = normalizedSeed * Math.PI * 2;
+
+    const jitter = (normalizedSeed - 0.5) * 0.45; // slight angle offset
+    const angle = baseAngle + jitter;
+
+    const tilt = 0.48;
     const x = Math.cos(angle) * ringRadius;
-    const y = Math.sin(angle) * ringRadius;
+    const y = Math.sin(angle) * ringRadius * tilt;
+
+    const depth = Math.sin(angle);
+    const normalizedDepth = (depth + 1) / 2;
+
+    const scale = 0.88 + normalizedDepth * 0.18;
+    const opacity = 0.62 + normalizedDepth * 0.38;
+    const zIndex = Math.round(20 + normalizedDepth * 100);
 
     return {
         left: `calc(50% + ${x}px)`,
         top: `calc(50% + ${y}px)`,
+        transform: `translate(-50%, -50%) scale(${scale})`,
+        opacity,
+        zIndex,
     };
 }
 
@@ -87,7 +107,7 @@ function RenderSolarSystem({ system }:{ system: SolarSystem }){
     }, {});
 
     return (
-        <div className="solar-system-scene">
+        <div className="solar-system-scene solar-system-container">
             <RenderRings />
             {userPlanet ? (
                 <div

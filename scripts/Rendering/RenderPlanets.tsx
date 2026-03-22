@@ -1,6 +1,9 @@
 import React from "react";
 import { Planet } from "../Planets/Planets";
 import "../../css/Planet.css";
+import "../../css/Moon.css";
+import "../../css/Sun.css";
+import "../../css/Labels.css";
 
 type RenderPlanetProps = {
     planet: Planet;
@@ -34,49 +37,72 @@ function renderPlanetAtmosphere({ planet, glowSize }:PlanetLayerProps){
     );
 }
 
-function renderPlanetRings({ planet, ringSize, moonCount }:PlanetLayerProps){
-    const ringCount = planet.hasRing ? Math.floor(planet.commitCount / 10) : 0;
-    const showRing = ringCount > 0;
+function renderPlanetRings({ planet, ringSize }: PlanetLayerProps) {
+    const ringCount = planet.hasRing ? clamp(Math.floor(planet.commitCount / 25), 1, 3) : 0;
 
-    if (!showRing) {
+    if (ringCount <= 0) {
         return null;
     }
 
     return (
         <>
             {Array.from({ length: ringCount }).map((_, index) => {
-                const sizeOffset = index * 10;
-                const tilt = index % 2 === 0 ? -18 : 18;
+                const sizeOffset = index * 12;
+                const tilt = -18 + index * 6;
 
                 return (
-                    <div
-                        key={`planet-ring-${planet.name}-${index}`}
-                        className="planet-rings"
-                        style={{
-                            width: `${ringSize + sizeOffset}px`,
-                            height: `${(ringSize + sizeOffset) * 0.42}px`,
-                            transform: `translate(-50%, -50%) rotate(${tilt}deg)`,
-                        }}
-                    />
+                    <React.Fragment key={`planet-ring-${planet.name}-${index}`}>
+                        <div
+                            className="planet-rings planet-rings-back"
+                            style={{
+                                width: `${ringSize + sizeOffset}px`,
+                                height: `${(ringSize + sizeOffset) * 0.42}px`,
+                                transform: `translate(-50%, -50%) rotate(${tilt}deg)`,
+                            }}
+                        />
+                        <div
+                            className="planet-rings planet-rings-front"
+                            style={{
+                                width: `${ringSize + sizeOffset}px`,
+                                height: `${(ringSize + sizeOffset) * 0.42}px`,
+                                transform: `translate(-50%, -50%) rotate(${tilt}deg)`,
+                            }}
+                        />
+                    </React.Fragment>
                 );
             })}
         </>
     );
 }
 
-function renderPlanetCore({ planet, planetSize }:PlanetLayerProps){
+function getPlanetBiome(planet: Planet) {
+    if (planet.isUserPlanet) return "star";
+    if (planet.hasRing && planet.commitCount > 24) return "gas";
+    if (planet.commitCount > 30) return "tech";
+    if (planet.importance > 80) return "ocean";
+    return "rocky";
+}
+
+
+function renderPlanetCore({ planet, planetSize }: PlanetLayerProps) {
+    const biome = getPlanetBiome(planet);
+
     return (
         <div
             className="planet-core"
+            data-biome={biome}
             style={{
                 width: `${planetSize}px`,
                 height: `${planetSize}px`,
-                background: `radial-gradient(circle at 30% 28%, #ffffff 0%, ${planet.color} 35%, #0f172a 100%)`,
-                boxShadow: `0 0 24px ${planet.color}55, inset -10px -12px 18px rgba(15, 23, 42, 0.55)`,
-            }}
+                ["--planet-color" as string]: planet.color,
+            } as React.CSSProperties}
         >
-            <div className="planet-surface" />
+            <div className="planet-base" />
+            <div className="planet-texture" />
+            <div className="planet-shadow" />
+            <div className="planet-rim-light" />
             <div className="planet-highlight" />
+            <div className="planet-feature" />
         </div>
     );
 }
@@ -214,6 +240,7 @@ function RenderPlanet({ planet }:RenderPlanetProps){
             style={{
                 width: `${glowSize + 120}px`,
                 height: `${glowSize + 120}px`,
+                ["--planet-color" as string]: planet.color,
             }}
         >
             {planet.isUserPlanet ? (
