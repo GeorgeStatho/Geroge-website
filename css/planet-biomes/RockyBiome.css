@@ -40,6 +40,6 @@
 }
 
 @keyframes rocky-dust-creep {
-    from { transform: translateX(0%); }
-    to   { transform: translateX(8%); }
+    0%, 100% { transform: translateX(-4%); }
+    50%      { transform: translateX(4%); }
 }

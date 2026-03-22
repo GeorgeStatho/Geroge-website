@@ -53,11 +53,11 @@
 }
 
 @keyframes ocean-land-drift {
-    from { transform: translateX(0%); }
-    to   { transform: translateX(10%); }
+    0%, 100% { transform: translateX(-5%); }
+    50%      { transform: translateX(5%); }
 }
 
 @keyframes ocean-cloud-drift {
-    from { transform: translateX(0%); }
-    to   { transform: translateX(18%); }
+    0%, 100% { transform: translateX(-9%); }
+    50%      { transform: translateX(9%); }
 }

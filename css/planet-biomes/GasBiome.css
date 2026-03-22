@@ -57,11 +57,11 @@
 }
 
 @keyframes gas-band-drift {
-    from { transform: translateY(0%); }
-    to   { transform: translateY(12%); }
+    0%, 100% { transform: translateY(-6%); }
+    50%      { transform: translateY(6%); }
 }
 
 @keyframes gas-storm-drift {
-    from { transform: translateX(0%); }
-    to   { transform: translateX(8%); }
+    0%, 100% { transform: translateX(-4%); }
+    50%      { transform: translateX(4%); }
 }
