@@ -1,35 +1,31 @@
-import Commit from "./Commits";
-import { getRepoData } from "./gitAPI";
+import { Branch } from "./Branch";
+
 export class Repo{
     name:string;
     date:string;
-    branches:Record<string,Commit[]>;
+    commitCount:number;
+    languages:string[];
+    branches:Branch[];
 
-    constructor(name:string,date:string){
+    constructor(name:string,date:string,commitCount:number=0,languages:string[]=[]){
         this.name=name;
-        this.date=date
-        this.branches={};        
+        this.date=date;
+        this.commitCount=commitCount;
+        this.languages=languages;
+        this.branches=[];        
     }
 
-    async createRepoData(name: string) {
-        const result = await getRepoData(name);
-        const branchNodes = result.data.repository.refs.nodes;
+    fillBranches(branchNodes: any[] = []) {
+        this.branches = [];
 
         for (const branch of branchNodes) {
-            this.branches[branch.name] = [];
-
-            for (const commit of branch.target.history.nodes) {
-                this.branches[branch.name].push(
-                    new Commit(
-                        commit.messageHeadline,
-                        commit.committedDate,
-                        commit.additions + commit.deletions
-                    )
-                );
-            }
+            const branchData = new Branch(
+                branch.name,
+                branch.target?.committedDate ?? "",
+                branch.target?.history?.totalCount ?? 0
+            );
+            branchData.fillCommits(branch.target?.history?.nodes ?? []);
+            this.branches.push(branchData);
         }
     }
-
-
-
 }
