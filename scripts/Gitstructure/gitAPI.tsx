@@ -1,23 +1,62 @@
-const api_url:string="https://api.github.com/graphql";
-const rawToken = import.meta.env.VITE_GITHUB_TOKEN ?? "";
-const token = rawToken.trim().replace(/;$/, "");
+const api_url:string="/api/github/graphql";
 
-async function runQuery(query:string){
-    const response = await fetch(api_url, {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ query }),
-    });
+function getErrorPreview(text:string,limit:number=180){
+    const normalized = text.replace(/\s+/g," ").trim();
+    return normalized.length > limit ? `${normalized.slice(0,limit)}...` : normalized;
+}
 
-    const data = await response.json();
+async function runQuery(query:string,operationName:string){
+    let response: Response;
 
-    if (!response.ok || data.errors) {
-        const errorMessage = data.errors?.map((error: { message?: string }) => error.message).join(", ")
-            || `GitHub API request failed with status ${response.status}`;
-        throw new Error(errorMessage);
+    try {
+        response = await fetch(api_url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ query }),
+        });
+    } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        throw new Error(
+            `[GitHub API:${operationName}] Network request failed. ` +
+            `Check that Vite is running and the proxy route /api/github/graphql is available. ` +
+            `Original error: ${message}`
+        );
+    }
+
+    const responseText = await response.text();
+    let data: any = null;
+
+    try {
+        data = responseText ? JSON.parse(responseText) : null;
+    } catch {
+        const preview = responseText ? ` Response preview: ${getErrorPreview(responseText)}` : "";
+        throw new Error(
+            `[GitHub API:${operationName}] Expected JSON but received a non-JSON response. ` +
+            `HTTP ${response.status} ${response.statusText}.${preview}`
+        );
+    }
+
+    if (!response.ok) {
+        const preview = responseText ? ` Response: ${getErrorPreview(responseText)}` : "";
+        throw new Error(
+            `[GitHub API:${operationName}] HTTP ${response.status} ${response.statusText}.${preview}`
+        );
+    }
+
+    if (data?.errors?.length) {
+        const errorMessage = data.errors
+            .map((error: { message?: string; path?: string[] }) => {
+                const path = error.path?.length ? ` at ${error.path.join(".")}` : "";
+                return `${error.message ?? "Unknown GraphQL error"}${path}`;
+            })
+            .join(" | ");
+        throw new Error(`[GitHub API:${operationName}] GraphQL error: ${errorMessage}`);
+    }
+
+    if (!data?.data) {
+        throw new Error(`[GitHub API:${operationName}] Response did not include a data field.`);
     }
 
     return data;
@@ -34,7 +73,7 @@ function getUser(){
             login
             }
         }
-        `)
+        `,"getUser")
     .then((data) => console.log(data));
 }
 
@@ -68,15 +107,8 @@ export function getRepos(user:string){
                         target {
                             ... on Commit {
                             committedDate
-                            history(first: 10) {
+                            history {
                                 totalCount
-                                nodes {
-                                oid
-                                messageHeadline
-                                committedDate
-                                additions
-                                deletions
-                                }
                             }
                             }
                         }
@@ -88,5 +120,6 @@ export function getRepos(user:string){
             }
             }
         `,
+        `getRepos:${user}`
     )
 }
