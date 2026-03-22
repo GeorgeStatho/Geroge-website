@@ -35,7 +35,14 @@ export class GitUser{
                 (repoData.repository.languages?.nodes ?? [])
                     .map((language: any) => language?.name)
                     .filter((language: string | undefined): language is string => Boolean(language));
-            const repo = new Repo(repoName,repoCreatedAt,repoCommitCount,repoLanguages);
+            const repoBranchCount = repoData.repository.refs?.totalCount ?? 0;
+            const repo = new Repo(
+                repoName,
+                repoCreatedAt,
+                repoCommitCount,
+                repoLanguages,
+                repoBranchCount
+            );
             repo.fillBranches(repoData.repository.refs?.nodes ?? []);
             this.Repos.push(repo);
         }

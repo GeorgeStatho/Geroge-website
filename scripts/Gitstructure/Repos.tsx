@@ -4,13 +4,15 @@ export class Repo{
     name:string;
     date:string;
     commitCount:number;
+    branchCount:number;
     languages:string[];
     branches:Branch[];
 
-    constructor(name:string,date:string,commitCount:number=0,languages:string[]=[]){
+    constructor(name:string,date:string,commitCount:number=0,languages:string[]=[],branchCount:number=0){
         this.name=name;
         this.date=date;
         this.commitCount=commitCount;
+        this.branchCount=branchCount;
         this.languages=languages;
         this.branches=[];        
     }

@@ -9,7 +9,7 @@ async function main(){
     document.body.appendChild(host);
 
     const root = createRoot(host);
-    const system = await createSolarSystem("davideast");
+    const system = await createSolarSystem("njbrake");
 
     root.render(<RenderSolarSystem system={system} />);
 }

@@ -101,7 +101,8 @@ export function getRepos(user:string){
                         }
                         }
                     }
-                    refs(refPrefix: "refs/heads/", first: 30) {
+                    refs(refPrefix: "refs/heads/", first: 10) {
+                        totalCount
                         nodes {
                         name
                         target {

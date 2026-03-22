@@ -30,13 +30,38 @@ export function RenderRings() {
     );
 }
 
+function renderOverflowDot(planet:Planet, index:number, dotCount:number){
+    const style = getDeadPlanetSlotStyle(planet, index, dotCount);
+    const dotSize = Math.max(5, Math.min(10, 4 + planet.importance / 20));
+
+    return (
+        <div
+            key={`${planet.name}-dot-${index}`}
+            className="solar-system-overflow-dot-slot"
+            style={style}
+        >
+            <div
+                className="solar-system-overflow-dot"
+                style={{
+                    width: `${dotSize}px`,
+                    height: `${dotSize}px`,
+                }}
+            />
+            <div className="solar-system-overflow-dot-label">
+                {planet.name}
+            </div>
+        </div>
+    );
+}
+
 function RenderSolarSystem({ system }:{ system: SolarSystem }){
     const userPlanet = system.planets.find((planet) => planet.isUserPlanet);
     const repoPlanets = system.planets
         .filter((planet) => !planet.isUserPlanet)
         .sort((left, right) => right.importance - left.importance);
     const visibleRepoPlanets = repoPlanets.slice(0, 9);
-    const deadRepoPlanets = repoPlanets.slice(9);
+    const deadRepoPlanets = repoPlanets.slice(9, 29);
+    const overflowDotPlanets = repoPlanets.slice(29);
     const planetsByRing = visibleRepoPlanets.reduce<Record<number, Planet[]>>((groups, planet) => {
         const ringIndex = getRecencyRingIndex(planet);
         const group = groups[ringIndex] ?? [];
@@ -81,6 +106,9 @@ function RenderSolarSystem({ system }:{ system: SolarSystem }){
                     />
                 </div>
             ))}
+            {overflowDotPlanets.map((planet, index) =>
+                renderOverflowDot(planet, index, overflowDotPlanets.length)
+            )}
         </div>
         </section>
     );

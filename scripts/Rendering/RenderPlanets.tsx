@@ -30,7 +30,7 @@ type PlanetLayerProps = {
     planetSize: number;
     glowSize: number;
     ringSize: number;
-    moonCount: number;
+    branchCount: number;
 };
 
 function renderPlanetOrbit(){
@@ -155,7 +155,7 @@ function renderUserPlanetCore({ planet, planetSize }:PlanetLayerProps, githubUse
     );
 }
 
-function renderPlanetMoons({ planet, planetSize, moonCount }:PlanetLayerProps){
+function renderPlanetMoons({ planet, planetSize }:PlanetLayerProps){
     const visibleMoons = [...planet.moons]
         .sort((left, right) => right.importance - left.importance)
         .slice(0, 5);
@@ -207,12 +207,12 @@ function renderPlanetMoons({ planet, planetSize, moonCount }:PlanetLayerProps){
     );
 }
 
-function renderPlanetLabel({ planet, moonCount }:PlanetLayerProps){
+function renderPlanetLabel({ planet, branchCount }:PlanetLayerProps){
     return (
         <div className="planet-label">
             <div className="planet-label-name">{planet.name}</div>
             <div className="planet-label-meta">
-                {moonCount} moons
+                {branchCount} branches
             </div>
         </div>
     );
@@ -249,14 +249,13 @@ function RenderPlanet({ planet, githubUserName, forcedBiome }:RenderPlanetProps)
     const planetSize = planet.size;
     const glowSize = planetSize * 1.8;
     const ringSize = planetSize * 1.55;
-    const moonCount = planet.moons.length;
     const visualBoxSize = glowSize + 40;
     const layerProps = {
         planet,
         planetSize,
         glowSize,
         ringSize,
-        moonCount,
+        branchCount: planet.branchCount,
     };
 
     return (

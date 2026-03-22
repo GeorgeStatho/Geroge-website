@@ -10,6 +10,7 @@ export class Planet{
     date:string;
     imageUrl:string;
     commitCount:number;
+    branchCount:number;
     size:number;
     importance:number;
     color:string;
@@ -22,6 +23,7 @@ export class Planet{
         this.date="";
         this.imageUrl="";
         this.commitCount=0;
+        this.branchCount=0;
         this.size=0;
         this.importance=0;
         this.color="";
@@ -39,7 +41,8 @@ export class Planet{
     createPlanet(repo:Repo){
         this.date=repo.date;
         this.commitCount=repo.commitCount;
-        this.importance=calculateImportance(repo.date,repo.commitCount,repo.branches.length);
+        this.branchCount=repo.branchCount;
+        this.importance=calculateImportance(repo.date,repo.commitCount,repo.branchCount);
         this.color=this.determineColor(repo.languages);
         this.moons = [];
         for (let branch of repo.branches){

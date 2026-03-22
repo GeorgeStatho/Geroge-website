@@ -26,5 +26,5 @@ export function calculateImportance(date:string,commits:number,xNum:number){
     const commitScore = getLogScore(commits,500);
     const branchScore = getLogScore(xNum,20);
 
-    return 0.55 * recencyScore + 0.30 * commitScore + 0.15 * branchScore;
+    return 0.45 * recencyScore + 0.40 * commitScore + 0.15 * branchScore;
 }

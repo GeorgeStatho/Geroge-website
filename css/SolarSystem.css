@@ -78,6 +78,49 @@
     z-index: -1;
 }
 
+.solar-system-overflow-dot-slot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: center;
+    will-change: transform, opacity;
+    z-index: 6;
+}
+
+.solar-system-overflow-dot {
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.96) 0%, rgba(191, 219, 254, 0.8) 52%, rgba(148, 163, 184, 0.22) 100%);
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.26),
+        0 0 16px rgba(148, 163, 184, 0.1);
+    transform: translate(-50%, -50%);
+}
+
+.solar-system-overflow-dot-label {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 8px);
+    transform: translate(-50%, 0);
+    min-width: max-content;
+    padding: 4px 8px;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e2e8f0;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(8px);
+    transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.solar-system-overflow-dot-slot:hover .solar-system-overflow-dot-label {
+    opacity: 1;
+    transform: translate(-50%, -2px);
+}
+
 /* Optional star speckles for the scene */
 .solar-system-container::before {
     content: "";
