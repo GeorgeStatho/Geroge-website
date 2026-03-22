@@ -1,5 +1,6 @@
 import React from "react";
 import { Planet } from "../Planets/Planets";
+import { scaleLog } from "../utils/Scales";
 import "../../css/Planet.css";
 import "../../css/Moon.css";
 import "../../css/Sun.css";
@@ -7,6 +8,7 @@ import "../../css/Labels.css";
 
 type RenderPlanetProps = {
     planet: Planet;
+    forcedBiome?: string;
 };
 
 type PlanetLayerProps = {
@@ -25,13 +27,14 @@ function renderPlanetOrbit(){
     return <div className="planet-orbit" />;
 }
 
-function renderPlanetAtmosphere({ planet, glowSize }:PlanetLayerProps){
+function renderPlanetAtmosphere({ planet, glowSize }: PlanetLayerProps) {
     return (
         <div
             className="planet-atmosphere"
             style={{
                 width: `${glowSize}px`,
                 height: `${glowSize}px`,
+                background: `radial-gradient(circle, ${planet.color}55 0%, ${planet.color}1f 42%, transparent 72%)`,
             }}
         />
     );
@@ -57,7 +60,7 @@ function renderPlanetRings({ planet, ringSize }: PlanetLayerProps) {
                             style={{
                                 width: `${ringSize + sizeOffset}px`,
                                 height: `${(ringSize + sizeOffset) * 0.42}px`,
-                                transform: `translate(-50%, -50%) rotate(${tilt}deg)`,
+                                ["--ring-tilt" as string]: `${tilt}deg`,
                             }}
                         />
                         <div
@@ -65,7 +68,7 @@ function renderPlanetRings({ planet, ringSize }: PlanetLayerProps) {
                             style={{
                                 width: `${ringSize + sizeOffset}px`,
                                 height: `${(ringSize + sizeOffset) * 0.42}px`,
-                                transform: `translate(-50%, -50%) rotate(${tilt}deg)`,
+                                ["--ring-tilt" as string]: `${tilt}deg`,
                             }}
                         />
                     </React.Fragment>
@@ -75,8 +78,16 @@ function renderPlanetRings({ planet, ringSize }: PlanetLayerProps) {
     );
 }
 
-function getPlanetBiome(planet: Planet) {
+function getPlanetBiome(planet: Planet, forcedBiome?: string) {
+    if (forcedBiome) return forcedBiome;
+
+    const updatedAt = new Date(planet.date).getTime();
+    const ageInDays = Number.isFinite(updatedAt)
+        ? (Date.now() - updatedAt) / (1000 * 60 * 60 * 24)
+        : Number.POSITIVE_INFINITY;
+
     if (planet.isUserPlanet) return "star";
+    if (ageInDays >= 180 && planet.importance < 60) return "dead";
     if (planet.hasRing && planet.commitCount > 24) return "gas";
     if (planet.commitCount > 30) return "tech";
     if (planet.importance > 80) return "ocean";
@@ -84,8 +95,8 @@ function getPlanetBiome(planet: Planet) {
 }
 
 
-function renderPlanetCore({ planet, planetSize }: PlanetLayerProps) {
-    const biome = getPlanetBiome(planet);
+function renderPlanetCore({ planet, planetSize }: PlanetLayerProps, forcedBiome?: string) {
+    const biome = getPlanetBiome(planet, forcedBiome);
 
     return (
         <div
@@ -138,6 +149,7 @@ function renderPlanetMoons({ planet, planetSize, moonCount }:PlanetLayerProps){
         .sort((left, right) => right.importance - left.importance)
         .slice(0, 4);
     const moonOrbitSize = planetSize + 68;
+    const maxMoonSize = Math.max(...visibleMoons.map((moon) => moon.size || 1), 1);
 
     function getMoonAngle(index:number){
         const seed = Math.sin((planet.importance + 1) * 17 + (index + 1) * 97 + visibleMoons.length * 31) * 10000;
@@ -158,23 +170,29 @@ function renderPlanetMoons({ planet, planetSize, moonCount }:PlanetLayerProps){
             ) : null}
             {visibleMoons.map((moon, index) => {
                 const angle = getMoonAngle(index);
-                const orbitRadius = moonOrbitSize / 2;
                 const moonSize = clamp(Math.max(8, Math.sqrt(moon.size || 1) * 4), 8, 20);
-                const x = Math.cos(angle) * orbitRadius;
-                const y = Math.sin(angle) * orbitRadius;
+                const orbitDuration = scaleLog(moon.size || 1,1,maxMoonSize,6,20);
 
                 return (
                     <div
                         key={`${moon.name}-${index}`}
-                        className="moon"
-                        title={moon.name}
+                        className="moon-orbit"
                         style={{
-                            width: `${moonSize}px`,
-                            height: `${moonSize}px`,
-                            marginLeft: `${x - moonSize / 2}px`,
-                            marginTop: `${y - moonSize / 2}px`,
+                            width: `${moonOrbitSize}px`,
+                            height: `${moonOrbitSize}px`,
+                            ["--moon-orbit-duration" as string]: `${orbitDuration}s`,
+                            ["--moon-orbit-angle" as string]: `${angle}rad`,
                         }}
-                    />
+                    >
+                        <div
+                            className="moon"
+                            title={moon.name}
+                            style={{
+                                width: `${moonSize}px`,
+                                height: `${moonSize}px`,
+                            }}
+                        />
+                    </div>
                 );
             })}
         </div>
@@ -215,16 +233,16 @@ function renderUserPlanet(layerProps:PlanetLayerProps){
                 }}
             />
             {renderUserPlanetCore(layerProps)}
-            {renderUserPlanetLabel(layerProps)}
         </>
     );
 }
 
-function RenderPlanet({ planet }:RenderPlanetProps){
+function RenderPlanet({ planet, forcedBiome }:RenderPlanetProps){
     const planetSize = planet.size;
     const glowSize = planetSize * 1.8;
     const ringSize = planetSize * 1.55;
     const moonCount = planet.moons.length;
+    const visualBoxSize = glowSize + 40;
     const layerProps = {
         planet,
         planetSize,
@@ -243,18 +261,28 @@ function RenderPlanet({ planet }:RenderPlanetProps){
                 ["--planet-color" as string]: planet.color,
             }}
         >
-            {planet.isUserPlanet ? (
-                renderUserPlanet(layerProps)
-            ) : (
-                <>
-                    {renderPlanetOrbit()}
-                    {renderPlanetAtmosphere(layerProps)}
-                    {renderPlanetRings(layerProps)}
-                    {renderPlanetCore(layerProps)}
-                    {renderPlanetMoons(layerProps)}
-                    {renderPlanetLabel(layerProps)}
-                </>
-            )}
+            <div className="planet-visual-anchor">
+                <div
+                    className="planet-visual-box"
+                    style={{
+                        width: `${visualBoxSize}px`,
+                        height: `${visualBoxSize}px`,
+                    }}
+                >
+                {planet.isUserPlanet ? (
+                    renderUserPlanet(layerProps)
+                ) : (
+                    <>
+                        {renderPlanetOrbit()}
+                        {renderPlanetAtmosphere(layerProps)}
+                        {renderPlanetRings(layerProps)}
+                        {renderPlanetCore(layerProps, forcedBiome)}
+                        {renderPlanetMoons(layerProps)}
+                    </>
+                )}
+                </div>
+            </div>
+            {planet.isUserPlanet ? renderUserPlanetLabel(layerProps) : renderPlanetLabel(layerProps)}
         </div>
     );
 }

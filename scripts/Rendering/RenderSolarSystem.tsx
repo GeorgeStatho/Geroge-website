@@ -92,12 +92,45 @@ function getPlanetSlotStyle(ringIndex: number, slotIndex: number, slotCount: num
     };
 }
 
+function hashString(value:string){
+    let hash = 0;
+
+    for (let index = 0; index < value.length; index += 1) {
+        hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
+    }
+
+    return hash;
+}
+
+function getDeadPlanetSlotStyle(planet:Planet, index:number){
+    const seed = hashString(`${planet.name}-${index}`);
+    const angle = ((seed % 1000) / 1000) * Math.PI * 2;
+    const xRadiusPercent = Math.min(38 + index * 2.5, 46);
+    const yRadiusPercent = Math.min(24 + index * 1.8, 30);
+    const x = Math.cos(angle) * xRadiusPercent;
+    const y = Math.sin(angle) * yRadiusPercent;
+    const depth = Math.sin(angle);
+    const normalizedDepth = (depth + 1) / 2;
+    const scale = 0.72 + normalizedDepth * 0.12;
+    const opacity = 0.28 + normalizedDepth * 0.28;
+    const zIndex = Math.round(4 + normalizedDepth * 18);
+
+    return {
+        left: `calc(50% + ${x}%)`,
+        top: `calc(50% + ${y}%)`,
+        transform: `translate(-50%, -50%) scale(${scale})`,
+        opacity,
+        zIndex,
+    };
+}
+
 function RenderSolarSystem({ system }:{ system: SolarSystem }){
     const userPlanet = system.planets.find((planet) => planet.isUserPlanet);
-    const visibleRepoPlanets = system.planets
+    const repoPlanets = system.planets
         .filter((planet) => !planet.isUserPlanet)
-        .sort((left, right) => right.importance - left.importance)
-        .slice(0, 5);
+        .sort((left, right) => right.importance - left.importance);
+    const visibleRepoPlanets = repoPlanets.slice(0, 5);
+    const deadRepoPlanets = repoPlanets.slice(5);
     const planetsByRing = visibleRepoPlanets.reduce<Record<number, Planet[]>>((groups, planet) => {
         const ringIndex = getRecencyRingIndex(planet);
         const group = groups[ringIndex] ?? [];
@@ -107,6 +140,7 @@ function RenderSolarSystem({ system }:{ system: SolarSystem }){
     }, {});
 
     return (
+        <section className="solar-system-stage">
         <div className="solar-system-scene solar-system-container">
             <RenderRings />
             {userPlanet ? (
@@ -128,7 +162,17 @@ function RenderSolarSystem({ system }:{ system: SolarSystem }){
                     </div>
                 ))
             )}
+            {deadRepoPlanets.map((planet, index) => (
+                <div
+                    key={`${planet.name}-dead-${index}`}
+                    className="solar-system-planet-slot solar-system-orbiting-planet-slot solar-system-dead-planet-slot"
+                    style={getDeadPlanetSlotStyle(planet, index)}
+                >
+                    <RenderPlanet planet={planet} forcedBiome="dead" />
+                </div>
+            ))}
         </div>
+        </section>
     );
 }
 

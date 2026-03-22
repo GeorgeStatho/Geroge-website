@@ -40,7 +40,7 @@ export class Planet{
         this.date=repo.date;
         this.commitCount=repo.commitCount;
         this.importance=calculateImportance(repo.date,repo.commitCount,repo.branches.length);
-        this.size=scaleSqrt(this.importance,80,70,40,50);
+        this.size = scaleSqrt(this.importance, 0, 100, 40, 90);
         this.color=this.determineColor(repo.languages);
         this.moons = [];
         for (let branch of repo.branches){
